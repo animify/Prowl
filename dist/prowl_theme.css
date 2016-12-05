@@ -1,0 +1,13 @@
+.prowl-overlay {
+  background-color: #fff;
+}
+.prowl-modal {
+  width: 50%;
+  absolute: top 50% left 50%;
+  transform: translate(-50%);
+  height: 400px;
+  background-color: #fff;
+  border: 1px solid #000;
+  display: block;
+  content: '';
+}

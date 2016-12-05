@@ -1,0 +1,22 @@
+html.locked {
+  overflow: hidden;
+  touch-action: none;
+}
+.prowl-overlay {
+  float: left;
+  clear: none;
+  text-align: inherit;
+  width: 100%;
+  margin-left: 0%;
+  margin-right: 0%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+}
+.prowl-overlay::after {
+  content: '';
+  display: table;
+  clear: both;
+}

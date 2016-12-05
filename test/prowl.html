@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Prowl JS</title>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+		<script src="prowl.js" charset="utf-8"></script>
+		<link rel="stylesheet" href="prowl.css">
+		<link rel="stylesheet" href="prowl_theme.css">
+	</head>
+	<body>
+		<a class="click">click this</a>
+		<a class="click">or this</a>
+		<a data-prowl='toggle'>or this</a>
+		<div class="prowl">
+			<div class="prowl-overlay">
+				<div class="prowl-modal">
+
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			inst = $('.click').prowl({
+				overlay: 'prowl-overlay',
+				toggleClass: 'head'
+			})
+		</script>
+	</body>
+</html>
