@@ -1,5 +1,9 @@
+body {
+  font-family: 'Lato', sans-serif;
+}
 .prowl-overlay {
-  background-color: #fff;
+  background-color: #000;
+  background-color: rgba(0,0,0,0.85);
 }
 .prowl-modal {
   width: 50%;
@@ -13,8 +17,47 @@
   transform: translate(-50%, -50%);
   height: 300px;
   background-color: #fff;
-  border: 1px solid #ccc;
   display: block;
   content: '';
-  border-radius: 8px;
+  border-radius: 4px;
+}
+.prowl-modal_header,
+.prowl-modal_body,
+.prowl-modal_footer {
+  padding: 0 1.5em;
+}
+.prowl-modal_header {
+  border-bottom: 1px solid rgba(34,36,38,0.15);
+  padding-top: 1.25em;
+  padding-bottom: 1.25em;
+}
+.prowl-modal_header h2 {
+  margin: 0;
+  font-size: 1.4em;
+}
+.prowl-modal_body {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+.prowl-modal_footer {
+  position: relative;
+  bottom: 0;
+  float: left;
+  clear: none;
+  text-align: inherit;
+  width: 100%;
+  margin-left: 0%;
+  margin-right: 0%;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  background-color: #f9fafb;
+  border-top: 1px solid rgba(34,36,38,0.15);
+}
+.prowl-modal_footer::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+.prowl-modal_footer .float-right .button + .button {
+  margin-left: 0.5em;
 }

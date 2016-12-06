@@ -5,24 +5,42 @@
 		<title>Prowl JS</title>
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 		<script src="prowl.js" charset="utf-8"></script>
+		<link href="https://fonts.googleapis.com/css?family=Lato:400,600,700" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.css">
+		<link rel="stylesheet" href="blossom.min.css">
 		<link rel="stylesheet" href="prowl.css">
 		<link rel="stylesheet" href="prowl_theme.css">
 	</head>
 	<body>
 		<a class="click">click this</a>
-		<a class="click">or this</a>
+		<a class="click toggle">or this</a>
 		<a data-prowl='toggle'>or this</a>
-		<div class="prowl">
+		<div class="prowl closed">
 			<div class="prowl-overlay">
 				<div class="prowl-modal">
+					<div class="prowl-modal_header">
+						<h2>I'm a modal</h2>
+					</div>
+					<div class="prowl-modal_body">
 
+					</div>
+					<div class="prowl-modal_footer">
+						<div class="float-right">
+							<div class="button toggle">
+								Cancel
+							</div>
+							<div class="button green">
+								Looks good
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 		<script type="text/javascript">
 			inst = $('.click').prowl({
-				overlay: 'prowl-overlay',
-				toggleClass: 'head'
+				overlay: '.prowl-overlay',
+				toggleClass: '.toggle'
 			})
 		</script>
 	</body>

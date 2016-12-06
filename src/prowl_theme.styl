@@ -2,16 +2,41 @@
 @import 'jeet'
 @import 'rupture'
 
+body
+	font-family 'Lato', sans-serif
+
 .prowl
 	&-overlay
-		background-color #fff
+		background-color #000
+		background-color rgba(0,0,0,.85)
 	&-modal
 		width 50%
 		absolute top 50% left 50%
 		transform translate(-50%, -50%)
 		height 300px
 		background-color #fff
-		border 1px solid #ccc
 		display block
 		content ''
-		border-radius 8px
+		border-radius 4px
+		&_header, &_body, &_footer
+			padding 0 1.5em
+		&_header
+			border-bottom 1px solid rgba(#222426,.15)
+			padding-top 1.25em
+			padding-bottom 1.25em
+			h2
+				margin 0
+				font-size 1.4em
+		&_body
+			padding-top 1em
+			padding-bottom 1em
+		&_footer
+			relative bottom 0
+			span(1/1)
+			padding-top 1em
+			padding-bottom 1em
+			background-color #F9FAFB
+			border-top 1px solid rgba(#222426,.15)
+			.float-right
+				.button + .button
+					margin-left .5em

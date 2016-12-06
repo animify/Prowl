@@ -10,7 +10,9 @@ html.locked {
   margin-left: 0%;
   margin-right: 0%;
   height: 100%;
-  fixed: top left;
+  position: fixed;
+  top: 0;
+  left: 0;
   display: none;
 }
 .prowl-overlay::after {

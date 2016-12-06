@@ -1,26 +1,27 @@
 {
-  "name": "prowl",
-  "version": "1.0.0",
-  "description": "Modal plugin for jQuery",
-  "main": "index.js",
-  "scripts": {
-    "test": "test"
-  },
-  "author": "mansson.io",
-  "license": "MIT",
-  "devDependencies": {
-    "connect": "^3.5.0",
-    "fs-jetpack": "^0.10.3",
-    "gulp": "^3.9.1",
-    "gulp-stylus": "^2.6.0",
-    "gulp-util": "^3.0.7",
-    "gulp-watch": "^4.3.11",
-    "jeet": "^7.1.0",
-    "nib": "^1.1.2",
-    "rupture": "^0.6.2",
-    "serve-static": "^1.11.1"
-  },
-  "dependencies": {
-    "jquery": "^3.1.1"
-  }
+	"name": "prowl",
+	"version": "1.0.0",
+	"description": "Modal plugin for jQuery",
+	"main": "start.js",
+	"scripts": {
+		"start": "concurrently \"node static.js\" \"gulp start\"",
+		"dev": "concurrently \"node static.js\" \"gulp dev\""
+	},
+	"author": "mansson.io",
+	"license": "MIT",
+	"devDependencies": {
+		"connect": "^3.5.0",
+		"fs-jetpack": "^0.10.3",
+		"gulp": "^3.9.1",
+		"gulp-stylus": "^2.6.0",
+		"gulp-util": "^3.0.7",
+		"gulp-watch": "^4.3.11",
+		"jeet": "^7.1.0",
+		"nib": "^1.1.2",
+		"rupture": "^0.6.2",
+		"serve-static": "^1.11.1"
+	},
+	"dependencies": {
+		"jquery": "^3.1.1"
+	}
 }
