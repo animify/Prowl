@@ -2,6 +2,9 @@ html.locked {
   overflow: hidden;
   touch-action: none;
 }
+.prowl {
+  display: none;
+}
 .prowl-overlay {
   float: left;
   clear: none;
@@ -13,10 +16,21 @@ html.locked {
   position: fixed;
   top: 0;
   left: 0;
-  display: none;
 }
 .prowl-overlay::after {
   content: '';
   display: table;
   clear: both;
+}
+.prowl-modal {
+  display: none;
+  width: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }

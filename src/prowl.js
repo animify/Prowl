@@ -7,19 +7,35 @@
 			this._container = opts.container || '.prowl'
 			this._toggle = opts.toggleClass.charAt(0) == '.' ? opts.toggleClass : `.${opts.toggleClass}` || '.prowl-toggle'
 			this._overlay = opts.overlay || '.prowl-overlay'
-			this._background = opts.background || '#FFF'
+			this._modal = opts.modal || '.prowl-modal'
+			this._background = opts.background || 'rgba(0,0,0,.85)'
+			this._animate = opts.animate || 'fade'
+			this._duration = opts.duration || 200
+
 			this._state = 'closed'
+			this._states = {
+				closed: 'closed',
+				open: 'open',
+				closing: 'closing',
+				opening: 'opening'
+			}
 
 			this._opts = opts
 
 			$elem.addClass(this._toggle.substr(1))
 			this.initiate()
 			this.triggers()
-
 		}
 
 		initiate() {
-			if (this._container )
+			if (this.validColor(this._background))
+				$(this._overlay).css('background-color', this._background)
+
+			if ($(this._container).is('.opening, .closing, .open, .closed'))
+				console.log('true');
+			else
+				console.log('false');
+
 			$('body').on('click', '.toggle', (e) => {
 				this.toggle()
 			})
@@ -76,15 +92,41 @@
 		}
 
 		open() {
-			$(this._overlay).fadeIn('fast', () => {
-				$(this._container).trigger('open')
+			$(this._container).fadeIn('fast', () => {
+				this.animate('open', false)
 			})
 		}
 
 		close() {
-			$(this._overlay).fadeOut('fast', () => {
-				$(this._container).trigger('close')
+			this.animate('close', function(status) {
+				console.log(status);
+				$(this._container).fadeOut('fast')
 			})
+		}
+
+		animate(type, cb) {
+
+			let _this = this
+
+			switch (`${this._animate}_${type}`) {
+				case 'fade_open':
+					$(this._modal).fadeIn(this._duration)
+					break
+				case 'fade_close':
+					$(this._modal).fadeOut(this._duration)
+					break
+				case 'slide_open':
+					$(this._modal).slideDown(this._duration)
+					break
+				case 'slide_close':
+					$(this._modal).slideUp(this._duration)
+					break
+			}
+
+
+
+
+			setTimeout($.proxy(typeof cb === 'function' && cb(`${this._animate}_${type}`), $(this._container).trigger(type)), this._duration)
 		}
 
 		toggle() {
@@ -92,6 +134,12 @@
 				this.triggerClose()
 			else if ($(this._container).hasClass("closed"))
 				this.triggerOpen()
+		}
+
+		validColor(color) {
+			let ele = document.createElement("div")
+			ele.style.color = color
+			return ele.style.color.split(/\s+/).join('').toLowerCase()
 		}
 
 		getState() {

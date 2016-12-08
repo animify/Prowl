@@ -9,15 +9,22 @@ body
 	&-overlay
 		background-color #000
 		background-color rgba(0,0,0,.85)
+	&-close
+		fixed top 2em right 2em
+		z-index 4000
+		text-align center
+		cursor pointer
+		i
+			color rgba(#fff,.3)
+			font-size 2em
+		&:hover
+			i
+				color rgba(#fff,.6)
 	&-modal
-		width 50%
-		absolute top 50% left 50%
-		transform translate(-50%, -50%)
-		height 300px
 		background-color #fff
-		display block
 		content ''
-		border-radius 4px
+		border 1px solid rgba(#222426,.15)
+		border-radius 5px
 		&_header, &_body, &_footer
 			padding 0 1.5em
 		&_header
@@ -28,8 +35,10 @@ body
 				margin 0
 				font-size 1.4em
 		&_body
-			padding-top 1em
-			padding-bottom 1em
+			padding-top 2.4em
+			padding-bottom 2.4em
+			h5 + p
+				margin-top .4em
 		&_footer
 			relative bottom 0
 			span(1/1)
@@ -37,6 +46,7 @@ body
 			padding-bottom 1em
 			background-color #F9FAFB
 			border-top 1px solid rgba(#222426,.15)
+			border-radius 0 0 5px 5px
 			.float-right
 				.button + .button
 					margin-left .5em

@@ -8,8 +8,13 @@ html
 		touch-action none
 
 .prowl
+	display none
 	&-overlay
 		span(1/1)
 		height 100%
 		fixed top left
+	&-modal
 		display none
+		width 50%
+		absolute top 50% left 50%
+		transform translate(-50%, -50%)
