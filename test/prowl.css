@@ -34,3 +34,8 @@ html.locked {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
+.prowl-modal.scale {
+  height: 0;
+  width: 0;
+  display: block;
+}

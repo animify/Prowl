@@ -12,6 +12,16 @@
 			this._animate = opts.animate || 'fade'
 			this._duration = opts.duration || 200
 
+			console.log(this.width);
+			console.log(this.height);
+
+			this.cssTop = $(this._modal).css('top')
+			this.cssLeft = $(this._modal).css('left')
+			this.cssBottom = $(this._modal).css('bottom')
+			this.cssRight = $(this._modal).css('right')
+			this.cssTransform = $(this._modal).css('-webkit-transform').split(/[()]/)[1]
+			console.log(this.cssTransform);
+
 			this._state = 'closed'
 			this._states = {
 				closed: 'closed',
@@ -98,9 +108,9 @@
 		}
 
 		close() {
+			let _this = this
 			this.animate('close', function(status) {
-				console.log(status);
-				$(this._container).fadeOut('fast')
+				$(_this._container).fadeOut('fast')
 			})
 		}
 
@@ -115,18 +125,61 @@
 				case 'fade_close':
 					$(this._modal).fadeOut(this._duration)
 					break
-				case 'slide_open':
+				case 'reveal_open':
 					$(this._modal).slideDown(this._duration)
 					break
-				case 'slide_close':
+				case 'reveal_close':
 					$(this._modal).slideUp(this._duration)
+					break
+				case 'drop_open':
+					$(this._modal).css({
+						top: -$(this._modal).height(),
+						display: 'block'
+					}).animate({
+						 top : this.cssTop
+					}, this._duration)
+					break
+				case 'drop_close':
+					$(this._modal).animate({top: -$(this._modal).height()}, this._duration, () => {
+						$(this._modal).hide()
+					})
+					break
+				case 'swash_open':
+					$(this._modal).css({
+						left: -$(this._modal).width(),
+						display: 'block'
+					}).animate({
+						 left : this.cssLeft
+					}, this._duration)
+					break
+				case 'swash_close':
+					$(this._modal).animate({left: $(window).width() + $(this._modal).width()}, this._duration, () => {
+						$(this._modal).hide()
+					})
+					break
+				case 'scale_open':
+					console.log( this.height);
+					$(this._modal).addClass('scale').animate({
+							height: this.height,
+							width: this.width
+						}, this._duration);
+					break
+				case 'scale_close':
+					$(this._modal).animate({left: $(window).width() + $(this._modal).width()}, this._duration, () => {
+						$(this._modal).hide()
+					})
 					break
 			}
 
+			if (typeof cb === 'function') {
+				setTimeout(() => {
+					$(this._container).trigger(type)
+					cb(`${this._animate}_${type}`)
+				}, this._duration)
+			} else {
+				$(this._container).trigger(type)
+			}
 
-
-
-			setTimeout($.proxy(typeof cb === 'function' && cb(`${this._animate}_${type}`), $(this._container).trigger(type)), this._duration)
 		}
 
 		toggle() {
