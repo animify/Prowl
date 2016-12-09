@@ -16,7 +16,7 @@
 	<body>
 		<a class="click">click this</a>
 		<a class="click toggle">or this</a>
-		<a data-prowl='toggle'>or this</a>
+		<a data-prowl="toggle">or this</a>
 		<div class="prowl closed">
 			<div class="prowl-close toggle">
 				<i class="material-icons">close</i>
@@ -44,12 +44,7 @@
 			</div>
 		</div>
 		<script type="text/javascript">
-			inst = $('.click').prowl({
-				overlay: '.prowl-overlay',
-				animate: 'scale',
-				duration: 200,
-				toggleClass: '.toggle'
-			})
+			inst = $('.click').prowl()
 		</script>
 	</body>
 </html>

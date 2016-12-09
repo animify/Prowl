@@ -5,48 +5,40 @@
 			/* DEFAULT OPTIONS */
 			this._pluginname = 'ProwlJS'
 			this._container = opts.container || '.prowl'
-			this._toggle = opts.toggleClass.charAt(0) == '.' ? opts.toggleClass : `.${opts.toggleClass}` || '.prowl-toggle'
+			this._toggle = opts.toggleClass || '.prowl-toggle'
 			this._overlay = opts.overlay || '.prowl-overlay'
 			this._modal = opts.modal || '.prowl-modal'
-			this._background = opts.background || 'rgba(0,0,0,.85)'
-			this._animate = opts.animate || 'fade'
+			this._background = opts.background || 'rgba(20,21,22,.85)'
+			this._animate = 'fade reveal swash drop'.includes(opts.animate) ? opts.animate : 'fade' || 'fade'
 			this._duration = opts.duration || 200
+			this._escape = opts.closeOnEscape || true
+			this._state = 'open closed'.includes(opts.state) ? opts.state : 'closed' || 'closed'
 
-			console.log(this.width);
-			console.log(this.height);
+			this._toggle.charAt(0) == '.' ? this._toggle : `.${this._toggle}`
 
 			this.cssTop = $(this._modal).css('top')
 			this.cssLeft = $(this._modal).css('left')
 			this.cssBottom = $(this._modal).css('bottom')
 			this.cssRight = $(this._modal).css('right')
 			this.cssTransform = $(this._modal).css('-webkit-transform').split(/[()]/)[1]
-			console.log(this.cssTransform);
-
-			this._state = 'closed'
-			this._states = {
-				closed: 'closed',
-				open: 'open',
-				closing: 'closing',
-				opening: 'opening'
-			}
 
 			this._opts = opts
 
 			$elem.addClass(this._toggle.substr(1))
-			this.initiate()
 			this.triggers()
+			this.initiate()
 		}
 
 		initiate() {
-			if (this.validColor(this._background))
-				$(this._overlay).css('background-color', this._background)
+			this.validColor(this._background) && $(this._overlay).css('background-color', this._background)
 
-			if ($(this._container).is('.opening, .closing, .open, .closed'))
-				console.log('true');
-			else
-				console.log('false');
+			this._state == 'open' ? this.triggerOpen() : this.triggerClose()
 
-			$('body').on('click', '.toggle', (e) => {
+			$(document).keyup((e) => {
+				if (e.keyCode === 27 && this._state == 'open' && this._escape == true) this.triggerClose()
+			})
+
+			$('body').on('click', '.toggle, [data-prowl="toggle"]', (e) => {
 				this.toggle()
 			})
 		}
@@ -153,18 +145,6 @@
 					}, this._duration)
 					break
 				case 'swash_close':
-					$(this._modal).animate({left: $(window).width() + $(this._modal).width()}, this._duration, () => {
-						$(this._modal).hide()
-					})
-					break
-				case 'scale_open':
-					console.log( this.height);
-					$(this._modal).addClass('scale').animate({
-							height: this.height,
-							width: this.width
-						}, this._duration);
-					break
-				case 'scale_close':
 					$(this._modal).animate({left: $(window).width() + $(this._modal).width()}, this._duration, () => {
 						$(this._modal).hide()
 					})
