@@ -3,89 +3,188 @@
 		constructor($elem, opts) {
 
 			/* DEFAULT OPTIONS */
-			this.PLUGINNAME = 'ProwlJS'
-			this.CONTAINER = opts.container || '.prowl'
-			this.TOGGLE = opts.toggleClass || 'prowl-toggle'
-			this.OVERLAY = opts.overlay || '.prowl-overlay'
-			this.BACKGROUND = opts.background || '#FFF'
-			this.STATE = 'closed'
+			this._pluginname = 'ProwlJS'
+			this._container = opts.container || '.prowl'
+			this._toggle = opts.toggleClass || '.prowl-toggle'
+			this._overlay = opts.overlay || '.prowl-overlay'
+			this._modal = opts.modal || '.prowl-modal'
+			this._background = opts.background || 'rgba(149, 155, 160, 0.57)'
+			this._animate = 'fade reveal swash drop'.includes(opts.animate) ? opts.animate : 'fade' || 'fade'
+			this._duration = opts.duration || 200
+			this._escape = opts.closeOnEscape || true
+			this._state = 'open closed'.includes(opts.state) ? opts.state : 'closed' || 'closed'
 
-			$elem.addClass(this.TOGGLE)
+			this._toggle.charAt(0) == '.' ? this._toggle : `.${this._toggle}`
+
+			this.cssTop = $(this._modal).css('top')
+			this.cssLeft = $(this._modal).css('left')
+			this.cssBottom = $(this._modal).css('bottom')
+			this.cssRight = $(this._modal).css('right')
+			this.cssTransform = $(this._modal).css('-webkit-transform').split(/[()]/)[1]
+
+			this._opts = opts
+
+			$elem.addClass(this._toggle.substr(1))
 			this.triggers()
-			this.triggerOpen()
+			this.initiate()
+		}
+
+		initiate() {
+			this.validColor(this._background) && $(this._overlay).css('background-color', this._background)
+
+			this._state == 'open' ? this.triggerOpen() : this.triggerClose()
+
+			$(document).keyup((e) => {
+				if (e.keyCode === 27 && this._state == 'open' && this._escape == true) this.triggerClose()
+			})
+
+			$('body').on('click', '.toggle, [data-prowl="toggle"]', (e) => {
+				this.toggle()
+			})
 		}
 
 		triggers() {
-			console.log(this.CONTAINER);
 
-			$(this.CONTAINER).on('open', (e) => {
-				this.STATE = 'open'
-				$(this.CONTAINER).removeClass('opening closing closed')
+			$(this._container).on('open', (e) => {
+				this._state = 'open'
+				$(this._container).removeClass('opening closing closed')
 					.addClass('open')
 					.attr('data-prowl-state', 'open')
+
+				if (this._opts.onOpen !== undefined) this._opts.onOpen(e)
 			})
 
-			$(this.CONTAINER).on('closed', (e) => {
-				this.STATE = 'closed'
-				$(this.CONTAINER).removeClass('closing opening open')
+			$(this._container).on('close', (e) => {
+				this._state = 'closed'
+				$(this._container).removeClass('closing opening open')
 					.addClass('closed')
 					.attr('data-prowl-state', 'closed')
+
+				if (this._opts.onClose !== undefined) this._opts.onClose(e)
 			})
 
-			$(this.CONTAINER).on('opening', (e) => {
-				this.STATE = 'opening'
-				$(this.CONTAINER).removeClass('opening closing closed')
+			$(this._container).on('opening', (e) => {
+				this._state = 'opening'
+				$(this._container).removeClass('opening closing closed')
 					.addClass('opening')
 					.attr('data-prowl-state', 'opening')
+
+				if (this._opts.onOpening !== undefined) this._opts.onOpening(e)
 			})
 
-			$(this.CONTAINER).on('closing', (e) => {
-				this.STATE = 'closing'
-				$(this.CONTAINER).removeClass('opening closing open')
+			$(this._container).on('closing', (e) => {
+				this._state = 'closing'
+				$(this._container).removeClass('opening closed open')
 					.addClass('closing')
 					.attr('data-prowl-state', 'closing')
+
+				if (this._opts.onClosing !== undefined) this._opts.onClosing(e)
 			})
+
 		}
 
 		triggerOpen() {
-			$('body').on('click', `${this.TOGGLE}, [data-prowl='toggle']`, (e) => {
-				$(`.${this.CONTAINER}`).trigger('opening')
-				this.open()
-			})
+			$(`${this._container}`).trigger('opening')
+			this.open()
 		}
 
 		triggerClose() {
-			$('body').on('click', `${this.TOGGLE}, [data-prowl='toggle']`, (e) => {
-				$(`.${this.CONTAINER}`).trigger('closing')
-				this.close()
-			})
+			$(`${this._container}`).trigger('closing')
+			this.close()
 		}
 
 		open() {
-			$(this.OVERLAY).fadeIn('fast', () => {
-				$(this.CONTAINER).trigger('open')
+			$(this._container).fadeIn('fast', () => {
+				this.animate('open', false)
 			})
-
 		}
 
 		close() {
-			$(this.OVERLAY).fadeOut('fast', () => {
-				$(this.CONTAINER).trigger('close')
+			let _this = this
+			this.animate('close', function(status) {
+				$(_this._container).fadeOut('fast')
 			})
 		}
 
-		getState() {
-			return this.STATE
+		animate(type, cb) {
+
+			let _this = this
+
+			switch (`${this._animate}_${type}`) {
+				case 'fade_open':
+					$(this._modal).fadeIn(this._duration)
+					break
+				case 'fade_close':
+					$(this._modal).fadeOut(this._duration)
+					break
+				case 'reveal_open':
+					$(this._modal).slideDown(this._duration)
+					break
+				case 'reveal_close':
+					$(this._modal).slideUp(this._duration)
+					break
+				case 'drop_open':
+					$(this._modal).css({
+						top: -$(this._modal).height(),
+						display: 'block'
+					}).animate({
+						 top : this.cssTop
+					}, this._duration)
+					break
+				case 'drop_close':
+					$(this._modal).animate({top: -$(this._modal).height()}, this._duration, () => {
+						$(this._modal).hide()
+					})
+					break
+				case 'swash_open':
+					$(this._modal).css({
+						left: -$(this._modal).width(),
+						display: 'block'
+					}).animate({
+						 left : this.cssLeft
+					}, this._duration)
+					break
+				case 'swash_close':
+					$(this._modal).animate({left: $(window).width() + $(this._modal).width()}, this._duration, () => {
+						$(this._modal).hide()
+					})
+					break
+			}
+
+			if (typeof cb === 'function') {
+				setTimeout(() => {
+					$(this._container).trigger(type)
+					cb(`${this._animate}_${type}`)
+				}, this._duration)
+			} else {
+				$(this._container).trigger(type)
+			}
+
 		}
+
+		toggle() {
+			if ($(this._container).hasClass("open"))
+				this.triggerClose()
+			else if ($(this._container).hasClass("closed"))
+				this.triggerOpen()
+		}
+
+		validColor(color) {
+			let ele = document.createElement("div")
+			ele.style.color = color
+			return ele.style.color.split(/\s+/).join('').toLowerCase()
+		}
+
+		getState() {
+			return this._state
+		}
+
 	}
 
 	$.fn.prowl = function(opts) {
 		opts = opts || {}
 		$this = $(this)
-		this.each(() => {
-			instance = new Prowl($this, opts)
-			console.log($this.text());
-		})
+		instance = new Prowl($this, opts)
 
 		return instance
 	}

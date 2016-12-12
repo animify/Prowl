@@ -8,8 +8,8 @@ body {
   display: inline-block;
   position: relative;
   overflow: hidden;
-  border-radius: 4px;
-  color: #505050;
+  border-radius: 0;
+  color: #000;
   background-color: #e4e9ec;
   outline: 0;
   padding: 0 1.4em;
@@ -28,12 +28,12 @@ body {
   vertical-align: top;
 }
 .prowl .button.green {
-  background-color: #13ce66;
+  background-color: #f5096d;
   color: #fff;
 }
 .prowl-overlay {
   background-color: #000;
-  background-color: rgba(0,0,0,0.85);
+  background-color: rgba(149,155,160,0.57);
 }
 .prowl-close {
   position: fixed;
@@ -53,28 +53,45 @@ body {
 .prowl-modal {
   background-color: #fff;
   content: '';
-  border: 1px solid rgba(34,36,38,0.15);
-  border-radius: 5px;
+  border: 1px solid #e8e7e8;
 }
 .prowl-modal_header,
 .prowl-modal_body,
 .prowl-modal_footer {
-  padding: 0 1.5em;
+  padding: 0 1.8em;
 }
 .prowl-modal_header {
-  border-bottom: 1px solid rgba(34,36,38,0.15);
-  padding-top: 1.25em;
-  padding-bottom: 1.25em;
+  border-bottom: 1px solid #e8e7e8;
+  padding-top: 1.45em;
+  padding-bottom: 1.45em;
 }
 .prowl-modal_header h2 {
   margin: 0;
-  font-size: 1.4em;
+  font-weight: 800;
+  color: #f5096d;
+  font-size: 1.5em;
+  letter-spacing: -0.4px;
+}
+.prowl-modal_header h2 i {
+  position: relative;
+  top: 4px;
+  left: -1px;
 }
 .prowl-modal_body {
   padding-top: 2.4em;
   padding-bottom: 2.4em;
 }
+.prowl-modal_body h5 {
+  color: #000;
+  font-size: 1.1em;
+  text-transform: uppercase;
+  font-weight: 800;
+  position: relative;
+}
 .prowl-modal_body h5 + p {
+  margin-top: 0.8em;
+}
+.prowl-modal_body p + p {
   margin-top: 0.4em;
 }
 .prowl-modal_footer {
@@ -89,8 +106,7 @@ body {
   padding-top: 1em;
   padding-bottom: 1em;
   background-color: #f9fafb;
-  border-top: 1px solid rgba(34,36,38,0.15);
-  border-radius: 0 0 5px 5px;
+  border-top: 1px solid #e8e7e8;
 }
 .prowl-modal_footer::after {
   content: '';
