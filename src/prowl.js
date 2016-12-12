@@ -8,7 +8,7 @@
 			this._toggle = opts.toggleClass || '.prowl-toggle'
 			this._overlay = opts.overlay || '.prowl-overlay'
 			this._modal = opts.modal || '.prowl-modal'
-			this._background = opts.background || 'rgba(20,21,22,.85)'
+			this._background = opts.background || 'rgba(149, 155, 160, 0.57)'
 			this._animate = 'fade reveal swash drop'.includes(opts.animate) ? opts.animate : 'fade' || 'fade'
 			this._duration = opts.duration || 200
 			this._escape = opts.closeOnEscape || true

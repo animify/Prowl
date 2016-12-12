@@ -10,13 +10,31 @@
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"
 			rel="stylesheet">
 		<link rel="stylesheet" href="blossom.min.css">
+		<link rel="stylesheet" href="app.css">
 		<link rel="stylesheet" href="prowl.css">
 		<link rel="stylesheet" href="prowl_theme.css">
 	</head>
 	<body>
-		<a class="click">click this</a>
-		<a class="click toggle">or this</a>
-		<a data-prowl="toggle">or this</a>
+		<div class="content">
+			<div class="center">
+				<div class="logo">
+					<div class="contain">
+						<img src="prowl.png" alt="">
+					</div>
+				</div>
+				<a data-prowl="toggle">Try me out!</a>
+			</div>
+			<div class="bottom">
+				<ul class="list">
+					<li class="item"><a href="https://github.com/Aotik/Prowl/wiki/ProwlJS" target="_blank">Docs</a></li>
+					<li class="item"><a href="https://github.com/Aotik/Prowl" target="_blank">Github</a></li>
+					<li class="item"><a href="" target="_blank">CDN</a></li>
+					<li class="item"><a href="https://github.com/Aotik/Prowl/issues" target="_blank">Issues</a></li>
+				</ul>
+				<p>Handcrafted by <b><a href="https://cindr.io">cindr.io</a></b></p>
+			</div>
+		</div>
+
 		<div class="prowl closed">
 			<div class="prowl-close toggle">
 				<i class="material-icons">close</i>
@@ -24,27 +42,32 @@
 			<div class="prowl-overlay">
 				<div class="prowl-modal">
 					<div class="prowl-modal_header">
-						<h2>Security update</h2>
+						<h2><i class="material-icons">info_outline</i> Prowl Alert!</h2>
 					</div>
 					<div class="prowl-modal_body">
-						<h5>You have logged in from a new country <b>England, GB</b>.</h5>
-						<p>Was this you?</p>
+						<h5>What is ProwlJS?</h5>
+						<p>Well you're looking at it. Prowl is a jQuery plugin which enables an extensively customisable modal to be implemented on any site.</p>
+						<p>It takes a few minutes to setup, here's the link to the <a href="#">CDN</a></p>
 					</div>
 					<div class="prowl-modal_footer">
 						<div class="float-right">
 							<div class="button toggle">
-								No it wasn't
+								Close me
 							</div>
-							<div class="button green">
-								Yes that's me
-							</div>
+							<a href="https://github.com/Aotik/Prowl" class="button green" target="_blank">
+								Read the docs
+							</a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<script type="text/javascript">
-			inst = $('.click').prowl()
+let inst = $('.click').prowl({
+	onOpen: () => {
+		console.log('Hello World!')
+	}
+})
 		</script>
 	</body>
 </html>

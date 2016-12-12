@@ -1,0 +1,48 @@
+primary-color = #f5096d
+
+body
+	border 5px solid primary-color
+	a
+		color primary-color
+		&:hover
+			color lighten(primary-color, 30%)
+.content
+	display flex
+	align-items center
+	justify-content center
+	text-align center
+	width 100%
+	height 100%
+	.center a
+		color #000
+		font-weight 600
+		font-size 1.2em
+		position relative
+		display inline-block
+		&:after
+			background-color #000
+			width 100%
+			height 1px
+			position absolute
+			bottom -5px
+			content ''
+			display block
+	.bottom
+		align-self flex-end
+		position absolute
+		padding 1.5em 0
+		ul
+			margin-bottom 1em
+			padding .8em 2em
+			border-bottom 1px solid #e8e7e8
+		p a
+			color #5A15D8
+			&:hover
+				color lighten(#5A15D8, 30%)
+		.item
+			display inline-block
+			& + .item
+				margin-left 1.3em
+	img
+		pointer-events none
+		margin-bottom .7em

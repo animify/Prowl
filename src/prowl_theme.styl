@@ -2,6 +2,8 @@
 @import 'jeet'
 @import 'rupture'
 
+primary-color = #f5096d
+
 body
 	font-family 'Lato', sans-serif
 
@@ -12,8 +14,8 @@ body
 		display inline-block
 		position relative
 		overflow hidden
-		border-radius 4px
-		color #505050
+		border-radius 0
+		color #000
 		background-color #e4e9ec
 		outline 0
 		padding 0 1.4em
@@ -27,11 +29,11 @@ body
 		transition all 0.2s ease
 		vertical-align top
 		&.green
-			background-color #13ce66
+			background-color #f5096d
 			color #fff
 	&-overlay
 		background-color #000
-		background-color rgba(0,0,0,.85)
+		background-color rgba(149, 155, 160, 0.57)
 	&-close
 		fixed top 2em right 2em
 		z-index 4000
@@ -46,21 +48,35 @@ body
 	&-modal
 		background-color #fff
 		content ''
-		border 1px solid rgba(#222426,.15)
-		border-radius 5px
+		border 1px solid #e8e7e8
 		&_header, &_body, &_footer
-			padding 0 1.5em
+			padding 0 1.8em
 		&_header
-			border-bottom 1px solid rgba(#222426,.15)
-			padding-top 1.25em
-			padding-bottom 1.25em
+			border-bottom 1px solid #e8e7e8
+			padding-top 1.45em
+			padding-bottom 1.45em
 			h2
 				margin 0
-				font-size 1.4em
+				font-weight 800
+				color primary-color
+				font-size 1.5em
+				letter-spacing -.4px
+				i
+					position relative
+					top 4px
+					left -1px
 		&_body
 			padding-top 2.4em
 			padding-bottom 2.4em
+			h5
+				color #000
+				font-size 1.1em
+				text-transform uppercase
+				font-weight 800
+				position relative
 			h5 + p
+				margin-top .8em
+			p + p
 				margin-top .4em
 		&_footer
 			relative bottom 0
@@ -68,8 +84,7 @@ body
 			padding-top 1em
 			padding-bottom 1em
 			background-color #F9FAFB
-			border-top 1px solid rgba(#222426,.15)
-			border-radius 0 0 5px 5px
+			border-top 1px solid #e8e7e8
 			.float-right
 				.button + .button
 					margin-left .5em

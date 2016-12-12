@@ -1,20 +1,102 @@
+body {
+  font-family: 'Lato', sans-serif;
+}
+.prowl .float-right {
+  float: right;
+}
+.prowl .button {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  color: #505050;
+  background-color: #e4e9ec;
+  outline: 0;
+  padding: 0 1.4em;
+  text-align: center;
+  border: 0;
+  height: 2.467em;
+  line-height: 2.467em;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  -ms-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  vertical-align: top;
+}
+.prowl .button.green {
+  background-color: #13ce66;
+  color: #fff;
+}
 .prowl-overlay {
-  background-color: #fff;
+  background-color: #000;
+  background-color: rgba(0,0,0,0.85);
+}
+.prowl-close {
+  position: fixed;
+  top: 2em;
+  right: 2em;
+  z-index: 4000;
+  text-align: center;
+  cursor: pointer;
+}
+.prowl-close i {
+  color: rgba(255,255,255,0.3);
+  font-size: 2em;
+}
+.prowl-close:hover i {
+  color: rgba(255,255,255,0.6);
 }
 .prowl-modal {
-  width: 50%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  height: 300px;
   background-color: #fff;
-  border: 1px solid #ccc;
-  display: block;
   content: '';
-  border-radius: 8px;
+  border: 1px solid rgba(34,36,38,0.15);
+  border-radius: 5px;
+}
+.prowl-modal_header,
+.prowl-modal_body,
+.prowl-modal_footer {
+  padding: 0 1.5em;
+}
+.prowl-modal_header {
+  border-bottom: 1px solid rgba(34,36,38,0.15);
+  padding-top: 1.25em;
+  padding-bottom: 1.25em;
+}
+.prowl-modal_header h2 {
+  margin: 0;
+  font-size: 1.4em;
+}
+.prowl-modal_body {
+  padding-top: 2.4em;
+  padding-bottom: 2.4em;
+}
+.prowl-modal_body h5 + p {
+  margin-top: 0.4em;
+}
+.prowl-modal_footer {
+  position: relative;
+  bottom: 0;
+  float: left;
+  clear: none;
+  text-align: inherit;
+  width: 100%;
+  margin-left: 0%;
+  margin-right: 0%;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  background-color: #f9fafb;
+  border-top: 1px solid rgba(34,36,38,0.15);
+  border-radius: 0 0 5px 5px;
+}
+.prowl-modal_footer::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+.prowl-modal_footer .float-right .button + .button {
+  margin-left: 0.5em;
 }
