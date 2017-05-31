@@ -60,7 +60,29 @@ xmp {
   line-height: 1.6rem;
   font-size: 0.9rem;
   font-weight: 500;
-  margin: -1rem 0 0 0;
+  margin: -1rem 0;
+}
+.white-fade {
+  float: left;
+  clear: none;
+  text-align: inherit;
+  width: 100%;
+  margin-left: 0%;
+  margin-right: 0%;
+  height: 6rem;
+  background: -webkit-linear-gradient(bottom, #fff, rgba(255,255,255,0));
+  background: -moz-linear-gradient(bottom, #fff, rgba(255,255,255,0));
+  background: -o-linear-gradient(bottom, #fff, rgba(255,255,255,0));
+  background: -ms-linear-gradient(bottom, #fff, rgba(255,255,255,0));
+  background: linear-gradient(to top, #fff, rgba(255,255,255,0));
+  position: fixed;
+  bottom: 0;
+  z-index: 0;
+}
+.white-fade::after {
+  content: '';
+  display: table;
+  clear: both;
 }
 .content {
   padding-top: 3.6rem;
@@ -108,4 +130,9 @@ xmp {
 }
 .content .list .item + .item {
   margin-top: 0.4rem;
+}
+@media only screen and (max-width: 800px) {
+  .content .list {
+    position: relative;
+  }
 }
