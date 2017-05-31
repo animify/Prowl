@@ -1,48 +1,88 @@
-primary-color = #f5096d
+@import 'nib'
+@import 'jeet'
+@import 'rupture'
+
+primary-color = #3a52b2
 
 body
-	border 5px solid primary-color
+	background-color primary-color
+	overflow hidden
+	font-size 18px
+	min-height 100%
 	a
 		color primary-color
-		&:hover
-			color lighten(primary-color, 30%)
-.content
-	display flex
-	align-items center
-	justify-content center
-	text-align center
-	width 100%
-	height 100%
-	.center a
-		color #000
+		font-size 1rem
 		font-weight 600
-		font-size 1.2em
-		position relative
+		&:hover
+			color darken(primary-color, 20%)
+.container
+	cf()
+
+nav
+	padding .8rem 3rem
+	fixed top
+	span(1/1)
+	z-index -1
+	.logo
 		display inline-block
-		&:after
-			background-color #000
-			width 100%
-			height 1px
-			position absolute
-			bottom -5px
-			content ''
-			display block
-	.bottom
-		align-self flex-end
-		position absolute
-		padding 1.5em 0
-		ul
-			margin-bottom 1em
-			padding .8em 2em
-			border-bottom 1px solid #e8e7e8
-		p a
-			color #5A15D8
-			&:hover
-				color lighten(#5A15D8, 30%)
+		vertical-align top
+		h3
+			font-size 1rem
+			color #fff
+	.links
+		display inline-block
+		vertical-align top
+		float right
+		a
+			font-size 1rem
+			color #fff
+
+pre
+	tab-size 4
+
+xmp
+	background-color #f2f4f8
+	color #435ce2
+	padding .8rem 1rem
+	border-radius 14px
+	font-family 'Roboto Mono', 'Consolas', 'Monaco', 'Lucida Console', monospace
+	line-height 1.6rem
+	font-size .9rem
+	font-weight 500
+	margin -1rem 0 0 0
+
+.content
+	padding-top 3.6rem
+	height 100vh
+	overflow hidden
+	width 100%
+	.inner
+		background-color #fff
+		border-radius 28px 28px 0 0
+		box-shadow 0 0 50px 0 primary-color, 0 -4px 7px 0 rgba(0, 0, 0, .1), 0 -1px 10px 0 rgba(0, 0, 0, .5)
+		height 100%
+		width 100%
+		padding 3rem
+		overflow-y scroll
+	h4
+		font-weight 300
+	section + section
+		margin-top 1.4rem
+	p, b, pre
+		margin-bottom 1rem
+	b
+		display block
+	.section-content
+		border-top lighten(#b0adba, 60%) 1px solid
+		padding 1.4rem 0
+		margin-top 1.4rem
+	.list
+		position fixed
 		.item
-			display inline-block
+			a
+				color #b0adba
+			&.active
+				a
+					color primary-color
 			& + .item
-				margin-left 1.3em
-	img
-		pointer-events none
-		margin-bottom .7em
+				margin-top .4rem

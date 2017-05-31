@@ -1,5 +1,5 @@
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Europa', sans-serif;
 }
 .prowl .float-right {
   float: right;
@@ -10,13 +10,13 @@ body {
   overflow: hidden;
   border-radius: 0;
   color: #000;
-  background-color: #e4e9ec;
+  background-color: #3a52b2;
   outline: 0;
-  padding: 0 1.4em;
+  padding: 0 2rem;
   text-align: center;
   border: 0;
-  height: 2.467em;
-  line-height: 2.467em;
+  height: 3em;
+  line-height: 2.9em;
   font-size: 1em;
   font-weight: 600;
   cursor: pointer;
@@ -26,14 +26,15 @@ body {
   -ms-transition: all 0.2s ease;
   transition: all 0.2s ease;
   vertical-align: top;
+  border-radius: 100px;
 }
 .prowl .button.green {
-  background-color: #f5096d;
+  background-color: #3a52b2;
   color: #fff;
 }
 .prowl-overlay {
   background-color: #000;
-  background-color: rgba(149,155,160,0.57);
+  background-color: rgba(12,13,13,0.57);
 }
 .prowl-close {
   position: fixed;
@@ -42,34 +43,41 @@ body {
   z-index: 4000;
   text-align: center;
   cursor: pointer;
+  background-color: #fff;
+  border-radius: 50%;
+  line-height: 3.4rem;
+  width: 2.8rem;
+  height: 2.8rem;
 }
 .prowl-close i {
-  color: rgba(255,255,255,0.3);
-  font-size: 2em;
+  color: #262c43;
+  font-size: 1.4rem;
+}
+.prowl-close:hover {
+  background-color: #3a52b2;
 }
 .prowl-close:hover i {
-  color: rgba(255,255,255,0.6);
+  color: #fff;
 }
 .prowl-modal {
   background-color: #fff;
   content: '';
-  border: 1px solid #e8e7e8;
+  border-radius: 14px;
 }
 .prowl-modal_header,
 .prowl-modal_body,
 .prowl-modal_footer {
-  padding: 0 1.8em;
+  padding: 0 2.4em;
 }
 .prowl-modal_header {
-  border-bottom: 1px solid #e8e7e8;
-  padding-top: 1.45em;
-  padding-bottom: 1.45em;
+  padding-top: 2.4rem;
+  padding-bottom: 1rem;
 }
 .prowl-modal_header h2 {
   margin: 0;
   font-weight: 800;
-  color: #f5096d;
-  font-size: 1.5em;
+  color: #3a52b2;
+  font-size: 1.5rem;
   letter-spacing: -0.4px;
 }
 .prowl-modal_header h2 i {
@@ -78,21 +86,14 @@ body {
   left: -1px;
 }
 .prowl-modal_body {
-  padding-top: 2.4em;
-  padding-bottom: 2.4em;
+  padding-top: 1rem;
+  padding-bottom: 2.6em;
 }
-.prowl-modal_body h5 {
-  color: #000;
-  font-size: 1.1em;
-  text-transform: uppercase;
-  font-weight: 800;
-  position: relative;
-}
-.prowl-modal_body h5 + p {
-  margin-top: 0.8em;
+.prowl-modal_body p {
+  font-size: 1.1rem;
 }
 .prowl-modal_body p + p {
-  margin-top: 0.4em;
+  margin-top: 0.6rem;
 }
 .prowl-modal_footer {
   position: relative;
@@ -103,10 +104,10 @@ body {
   width: 100%;
   margin-left: 0%;
   margin-right: 0%;
-  padding-top: 1em;
-  padding-bottom: 1em;
-  background-color: #f9fafb;
-  border-top: 1px solid #e8e7e8;
+  padding-top: 1.4rem;
+  padding-bottom: 1.4rem;
+  background-color: #f6f9fc;
+  border-radius: 0 0 14px 14px;
 }
 .prowl-modal_footer::after {
   content: '';
@@ -115,4 +116,10 @@ body {
 }
 .prowl-modal_footer .float-right .button + .button {
   margin-left: 0.5em;
+}
+@media only screen and (max-width: 800px) {
+  .prowl-modal_footer {
+    position: fixed;
+    bottom: 0;
+  }
 }

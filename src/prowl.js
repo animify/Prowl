@@ -8,7 +8,7 @@
 			this._toggle = opts.toggleClass || '.prowl-toggle'
 			this._overlay = opts.overlay || '.prowl-overlay'
 			this._modal = opts.modal || '.prowl-modal'
-			this._background = opts.background || 'rgba(149, 155, 160, 0.57)'
+			this._background = opts.background || 'rgba(12, 13, 13, 0.57)'
 			this._animate = 'fade reveal swash drop'.includes(opts.animate) ? opts.animate : 'fade' || 'fade'
 			this._duration = opts.duration || 200
 			this._escape = opts.closeOnEscape || true
@@ -16,8 +16,8 @@
 
 			this._toggle.charAt(0) == '.' ? this._toggle : `.${this._toggle}`
 
-			this.cssTop = $(this._modal).css('top')
-			this.cssLeft = $(this._modal).css('left')
+			this.cssTop = "50%"
+			this.cssLeft = "50%"
 			this.cssBottom = $(this._modal).css('bottom')
 			this.cssRight = $(this._modal).css('right')
 			this.cssTransform = $(this._modal).css('-webkit-transform').split(/[()]/)[1]
@@ -38,9 +38,7 @@
 				if (e.keyCode === 27 && this._state == 'open' && this._escape == true) this.triggerClose()
 			})
 
-			$('body').on('click', '.toggle, [data-prowl="toggle"]', (e) => {
-				this.toggle()
-			})
+			$('body').on('click', '.toggle, [data-prowl="toggle"]', (e) => this.toggle())
 		}
 
 		triggers() {
@@ -52,27 +50,21 @@
 					.attr('data-prowl-state', 'open')
 
 				if (this._opts.onOpen !== undefined) this._opts.onOpen(e)
-			})
-
-			$(this._container).on('close', (e) => {
+			}).on('close', (e) => {
 				this._state = 'closed'
 				$(this._container).removeClass('closing opening open')
 					.addClass('closed')
 					.attr('data-prowl-state', 'closed')
 
 				if (this._opts.onClose !== undefined) this._opts.onClose(e)
-			})
-
-			$(this._container).on('opening', (e) => {
+			}).on('opening', (e) => {
 				this._state = 'opening'
 				$(this._container).removeClass('opening closing closed')
 					.addClass('opening')
 					.attr('data-prowl-state', 'opening')
 
 				if (this._opts.onOpening !== undefined) this._opts.onOpening(e)
-			})
-
-			$(this._container).on('closing', (e) => {
+			}).on('closing', (e) => {
 				this._state = 'closing'
 				$(this._container).removeClass('opening closed open')
 					.addClass('closing')
@@ -107,9 +99,6 @@
 		}
 
 		animate(type, cb) {
-
-			let _this = this
-
 			switch (`${this._animate}_${type}`) {
 				case 'fade_open':
 					$(this._modal).fadeIn(this._duration)
@@ -145,7 +134,7 @@
 					}, this._duration)
 					break
 				case 'swash_close':
-					$(this._modal).animate({left: $(window).width() + $(this._modal).width()}, this._duration, () => {
+					$(this._modal).animate({left: $(window).width()}, this._duration, () => {
 						$(this._modal).hide()
 					})
 					break
@@ -170,7 +159,7 @@
 		}
 
 		validColor(color) {
-			let ele = document.createElement("div")
+			const ele = document.createElement("div")
 			ele.style.color = color
 			return ele.style.color.split(/\s+/).join('').toLowerCase()
 		}

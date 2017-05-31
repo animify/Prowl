@@ -2,10 +2,10 @@
 @import 'jeet'
 @import 'rupture'
 
-primary-color = #f5096d
+primary-color = #3a52b2
 
 body
-	font-family 'Lato', sans-serif
+	font-family 'Europa', sans-serif
 
 .prowl
 	.float-right
@@ -16,75 +16,77 @@ body
 		overflow hidden
 		border-radius 0
 		color #000
-		background-color #e4e9ec
+		background-color primary-color
 		outline 0
-		padding 0 1.4em
+		padding 0 2rem
 		text-align center
 		border 0
-		height 2.467em
-		line-height 2.467em
+		height 3em
+		line-height 2.9em
 		font-size 1em
 		font-weight 600
 		cursor pointer
 		transition all 0.2s ease
 		vertical-align top
+		border-radius 100px
 		&.green
-			background-color #f5096d
+			background-color primary-color
 			color #fff
 	&-overlay
 		background-color #000
-		background-color rgba(149, 155, 160, 0.57)
+		background-color rgba(12, 13, 13, 0.57)
 	&-close
 		fixed top 2em right 2em
 		z-index 4000
 		text-align center
 		cursor pointer
+		background-color #fff
+		border-radius 50%
+		line-height 3.4rem
+		width 2.8rem
+		height 2.8rem
 		i
-			color rgba(#fff,.3)
-			font-size 2em
+			color rgba(38, 44, 67, 1)
+			font-size 1.4rem
 		&:hover
+			background-color primary-color
 			i
-				color rgba(#fff,.6)
+				color #fff
 	&-modal
 		background-color #fff
 		content ''
-		border 1px solid #e8e7e8
+		border-radius 14px
 		&_header, &_body, &_footer
-			padding 0 1.8em
+			padding 0 2.4em
 		&_header
-			border-bottom 1px solid #e8e7e8
-			padding-top 1.45em
-			padding-bottom 1.45em
+			padding-top 2.4rem
+			padding-bottom 1rem
 			h2
 				margin 0
 				font-weight 800
 				color primary-color
-				font-size 1.5em
+				font-size 1.5rem
 				letter-spacing -.4px
 				i
 					position relative
 					top 4px
 					left -1px
 		&_body
-			padding-top 2.4em
-			padding-bottom 2.4em
-			h5
-				color #000
-				font-size 1.1em
-				text-transform uppercase
-				font-weight 800
-				position relative
-			h5 + p
-				margin-top .8em
-			p + p
-				margin-top .4em
+			padding-top 1rem
+			padding-bottom 2.6em
+			p
+				font-size 1.1rem
+				& + p
+					margin-top .6rem
 		&_footer
 			relative bottom 0
 			span(1/1)
-			padding-top 1em
-			padding-bottom 1em
-			background-color #F9FAFB
-			border-top 1px solid #e8e7e8
+			padding-top 1.4rem
+			padding-bottom 1.4rem
+			background-color #f6f9fc
+			border-radius 0 0 14px 14px
 			.float-right
 				.button + .button
 					margin-left .5em
+			+below('m')
+				fixed bottom
