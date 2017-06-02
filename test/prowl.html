@@ -46,42 +46,57 @@
 						<div class="col xs-12 m-10">
 							<section id="section-introduction">
 								<h4>Introduction</h4>
-								<h6>Introduction guide to Prowl</h6>
+								<h6>A little bit about the plugin</h6>
 								<div class="section-content">
-									<p>Welcome to the ProwlJS Docs.</p>
 									<p>Prowl is a jQuery plugin which enables an extensively customisable modal to be implemented on any site.</p>
-									<p>Get started with the setup below</p>
-									<a class="animation-bounce" data-prowl="toggle">Click here to try it out!</a>
+
+									<p>Acting as a modal framework and event handler, modal structures have no definitive structure to them and therefore can be used on any website.</p>
+									<a class="toggle button" data-prowl-target="what">Try out the basic modal</a>
 								</div>
 							</section>
 							<section id="section-setup">
 								<h4>Setup</h4>
-								<h6>Installing and setting up Prowl</h6>
+								<h6>Installation and setup</h6>
 								<div class="section-content">
 									<p>Download the latest distribution files from the repo.</p>
 									<p>Include the CSS files in the head of your page (prowl.css is required unless you know what you're doing):</p>
 									<pre>
-										<code class="hljs">&lt;link rel=&quot;stylesheet&quot; href=&quot;../dist/prowl.css&quot;&gt;&#10;&lt;link rel=&quot;stylesheet&quot; href=&quot;../dist/prowl_theme.css&quot;&gt;</code>
+										<code class="hljs">&lt;link rel=&quot;stylesheet&quot; href=&quot;/dist/prowl.css&quot;&gt;&#10;&lt;link rel=&quot;stylesheet&quot; href=&quot;/dist/prowl_theme.css&quot;&gt;</code>
 									</pre>
-									<p>Include the JS just before <code>&lt;/body&gt;</code></p>
+									<p>Include the JS file just before <code>&lt;/body&gt;</code>:</p>
 									<pre>
-										<code class="hljs">&lt;script src=&quot;../dist/prowl.js&quot;&gt;&lt;/script&gt;</code>
+										<code class="hljs">&lt;script src=&quot;/dist/prowl.js&quot;&gt;&lt;/script&gt;</code>
 									</pre>
 									<p>Structure a basic modal with HTML:</p>
 									<pre>
-										<code class="hljs">&lt;a class=&quot;open&quot;&gt;Open the modal&lt;/a&gt;
+										<code class="hljs">&lt;a class=&quot;open&quot; data-prowl-target=&quot;example&quot;&gt;Open the modal&lt;/a&gt;
 &lt;div class=&quot;prowl&quot;&gt;
 	&lt;div class=&quot;prowl-overlay&quot;&gt;
-		&lt;div class=&quot;prowl-modal&quot;&gt;
+		&lt;div class=&quot;prowl-modal&quot; data-prowl-id=&quot;example&quot;&gt;
 			&lt;h2&gt;It's a modal!&lt;/h2&gt;
 			&lt;div class=&quot;button toggle&quot;&gt;Close&lt;/div&gt;
 		&lt;/div&gt;
 	&lt;/div&gt;
 &lt;/div&gt;</code>
 									</pre>
-									<p>Initiate the modal by using the class used for the toggle:</p>
+									<p>Multiple modals can also be created, just point the target of the toggle to the id of the modal:</p>
 									<pre>
-										<code class="hljs">$('.open').prowl() //We used the .open class in the modal markup</code>
+										<code class="hljs html">&lt;a class="open" data-prowl-target="modal-one"&gt;Open first modal&lt;/a&gt;
+&lt;a class="open" data-prowl-target="modal-two"&gt;Open second modal&lt;/a&gt;
+&lt;div class="prowl"&gt;
+	&lt;div class="prowl-overlay"&gt;
+		&lt;div class="prowl-modal" data-prowl-id="modal-one"&gt;
+			...
+		&lt;/div&gt;
+		&lt;div class="prowl-modal" data-prowl-id="modal-two"&gt;
+			...
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code>
+									</pre>
+									<p>Initiate the modal by using the class used for the toggle and pass an options object if needed:</p>
+									<pre>
+										<code class="hljs">$('.open').prowl(options) //We used the .open class in the modal markup</code>
 									</pre>
 								</div>
 							</section>
@@ -89,35 +104,37 @@
 								<h4>Options</h4>
 								<h6>Available &amp; default options for the Prowl object</h6>
 								<div class="section-content">
-									<p>You can pass additional options to Prowl</p>
-									<b>container</b>
+									<p>Options can be altered to customize Prowl:</p>
+									<br/>
+									<b>containerClass</b>
+									<p>The element class of the container holding the modal structure.</p>
 									<pre>
-										<code class="hljs http">Default: .prowl</code>
+										<code class="hljs http">Default: ".prowl"</code>
 									</pre>
 									<b>toggleClass</b>
 									<p>Add what class name will be appended to the toggle element on state change.</p>
 									<pre>
-										<code class="hljs http">Default: .prowl-toggle</code>
+										<code class="hljs http">Default: ".prowl-toggle"</code>
 									</pre>
-									<b>overlay</b>
+									<b>overlayClass</b>
 									<p>The element class of the overlay of the modal.</p>
 									<pre>
-										<code class="hljs http">Default: .prowl-overlay</code>
+										<code class="hljs http">Default: ".prowl-overlay"</code>
 									</pre>
-									<b>modal</b>
+									<b>modalClass</b>
 									<p>The element class of the modal itself.</p>
 									<pre>
-										<code class="hljs http">Default: .prowl-modal</code>
+										<code class="hljs http">Default: ".prowl-modal"</code>
 									</pre>
 									<b>background</b>
 									<p>Override the color of the overlay background, formatted in hex, rgba or rgb.</p>
 									<pre>
-										<code class="hljs http">Default: rgba(149, 155, 160, 0.57)</code>
+										<code class="hljs http">Default: "rgba(149, 155, 160, 0.57)"</code>
 									</pre>
 									<b>animate</b>
-									<p>Choose animation of how the modal enters and exits. Options are fade, reveal, swash and drop.</p>
+									<p>Animation of how the modal opens and closes. Options are fade, reveal, swash and drop.</p>
 									<pre>
-										<code class="hljs http">Default: fade</code>
+										<code class="hljs http">Default: "fade"</code>
 									</pre>
 									<b>duration</b>
 									<p>The speed of the animation in ms.</p>
@@ -130,9 +147,9 @@
 										<code class="hljs http">Default: true</code>
 									</pre>
 									<b>state</b>
-									<p>Override the initial state of the modal. Options are open, closed</p>
+									<p>Override the initial state of the modal. Options are open, closed.</p>
 									<pre>
-										<code class="hljs http">Default: closed</code>
+										<code class="hljs http">Default: "closed"</code>
 									</pre>
 								</div>
 							</section>
@@ -145,29 +162,29 @@
 										<code class="hljs">let inst = $('.open').prowl()</code>
 									</pre>
 									<b>open()</b>
-									<p>Opens the modal.</p>
+									<p>Manually opens the modal.</p>
 									<pre>
 										<code class="hljs">inst.open()</code>
 									</pre>
 									<b>close()</b>
-									<p>Closes the modal.</p>
+									<p>Manually closes the modal.</p>
 									<pre>
 										<code class="hljs">inst.close()</code>
 									</pre>
 									<b>getState()</b>
-									<p>Gets the current state of the modal.</p>
+									<p>Gets the current state of the modal. Returns <code>opened</code>/<code>opening</code>/<code>closed</code>/<code>closing</code></p>
 									<pre>
 										<code class="hljs">inst.getState()</code>
 									</pre>
 									<b>toggle()</b>
-									<p>Toggles the current visibility of the modal.</p>
+									<p>Toggles the current state [open/closed] of the modal.</p>
 									<pre>
 										<code class="hljs">inst.toggle()</code>
 									</pre>
 									<b>validColor(color)</b>
-									<p>Pass a color and check if it is valid for the overlay background.</p>
+									<p>Pass a color and check if it is valid for the overlay background. Returns a boolean.</p>
 									<pre>
-										<code class="hljs">inst.validColor("#000000")</code>
+										<code class="hljs">inst.validColor("#f2f4f8")</code>
 									</pre>
 								</div>
 							</section>
@@ -221,12 +238,12 @@
 			</div>
 		</div>
 
-		<div class="prowl closed">
+		<div class="prowl">
 			<div class="prowl-close toggle">
 				<i class="material-icons">close</i>
 			</div>
 			<div class="prowl-overlay">
-				<div class="prowl-modal">
+				<div class="prowl-modal" data-prowl-id="what">
 					<div class="prowl-modal_header">
 						<h2>What is Prowl JS?</h2>
 					</div>
@@ -242,17 +259,36 @@
 						</div>
 					</div>
 				</div>
+
+				<div class="prowl-modal" data-prowl-id="what2">
+					<div class="prowl-modal_header">
+						<h2>What is Prowl JS?2</h2>
+					</div>
+					<div class="prowl-modal_body">
+						<p>Well you're looking at it. Prowl is a jQuery plugin which enables an extensively customisable modal to be implemented on any site.</p>
+						<p>It takes a few minutes to setup, here's the link to the <a href="#">CDN</a>.</p>
+					</div>
+					<div class="prowl-modal_footer">
+						<div class="float-right">
+							<a href="https://github.com/Aotik/Prowl" class="button green" target="_blank">
+								Read the docs
+							</a>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-		<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
+		<script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 		<script src="prowl.js" charset="utf-8"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 		<script type="text/javascript">
-		$('.toggle').prowl({
+		let inst = $('.toggle').prowl({
 			animate: 'drop'
 		})
 
 		let lastId = null
+
 		const docMenu = $("#list-spy")
 
 		const menuItems = docMenu.find("a")
@@ -280,21 +316,18 @@
 
 		menuItems.click(function(e){
 			const href = $(this).attr("href")
-			const offsetTop = href === "#" ? 0 : $(href).offset().top - 100
+			const offsetTop = href === "#" ? 0 : $(href).offset().top - 85
 
-			console.log(offsetTop, href);
 			$('html, body').stop().animate({
 				scrollTop: offsetTop
 			}, 300)
 			e.preventDefault()
 		})
 
-		activateLink()
-
 		$(window).scroll(() => activateLink())
 
-
 		$(document).ready(function() {
+			activateLink()
 			$('pre code').each(function(i, block) {
 				hljs.highlightBlock(block);
 			});

@@ -11,9 +11,11 @@ body a:hover {
 }
 nav {
   padding: 0.8rem 3rem;
-  background-color: #3a52b2;
+  background-color: #fff;
+  border-bottom: 1px solid #dfdee3;
   position: fixed;
   top: 0;
+  z-index: 100;
   float: left;
   clear: none;
   text-align: inherit;
@@ -32,7 +34,6 @@ nav .logo {
 }
 nav .logo h3 {
   font-size: 1rem;
-  color: #fff;
 }
 nav .links {
   display: inline-block;
@@ -41,7 +42,6 @@ nav .links {
 }
 nav .links a {
   font-size: 1rem;
-  color: #fff;
 }
 pre {
   -moz-tab-size: 4;
@@ -70,8 +70,16 @@ pre {
   display: table;
   clear: both;
 }
+.button {
+  padding: 0 2rem;
+  height: 3rem;
+  line-height: 2.9em;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 100px;
+}
 .content {
-  padding-top: 3.5rem;
+  padding-top: 2.8rem;
   width: 100%;
   min-height: 100%;
 }
@@ -98,6 +106,10 @@ pre {
 .content b {
   display: block;
 }
+.content p b {
+  display: inline-block;
+  margin: 0;
+}
 .content .section-content {
   border-top: #dfdee3 1px solid;
   padding: 1.4rem 0;
@@ -105,6 +117,7 @@ pre {
 }
 .content .list {
   position: fixed;
+  z-index: 0;
 }
 .content .list .item a {
   color: #8d99ab;
@@ -123,7 +136,7 @@ pre {
 .hljs {
   display: block;
   overflow-x: auto;
-  padding: 0.8rem 1rem;
+  padding: 0.8rem 1.2rem;
   color: #4c5767;
   background: #f2f4f8;
   border-radius: 14px;
@@ -132,13 +145,13 @@ pre {
 }
 .hljs-comment,
 .hljs-quote {
-  color: #998;
+  color: #8d99ab;
   font-style: italic;
 }
 .hljs-keyword,
 .hljs-selector-tag,
 .hljs-subst {
-  color: #333;
+  color: #68778d;
   font-weight: bold;
 }
 .hljs-number,

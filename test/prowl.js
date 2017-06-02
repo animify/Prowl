@@ -1,13 +1,15 @@
 (($) => {
 	class Prowl {
-		constructor($elem, opts) {
+		constructor(targets, opts) {
 
 			/* DEFAULT OPTIONS */
 			this._pluginname = 'ProwlJS'
-			this._container = opts.container || '.prowl'
+			this._container = opts.containerClass || '.prowl'
+			this._target = null
+			this._toggles = null
 			this._toggle = opts.toggleClass || '.prowl-toggle'
-			this._overlay = opts.overlay || '.prowl-overlay'
-			this._modal = opts.modal || '.prowl-modal'
+			this._overlay = opts.overlayClass || '.prowl-overlay'
+			this._modal = opts.modalClass || '.prowl-modal'
 			this._background = opts.background || 'rgba(12, 13, 13, 0.57)'
 			this._animate = 'fade reveal swash drop'.includes(opts.animate) ? opts.animate : 'fade' || 'fade'
 			this._duration = opts.duration || 200
@@ -24,12 +26,12 @@
 
 			this._opts = opts
 
-			$elem.addClass(this._toggle.substr(1))
+			targets.addClass(this._toggle.substr(1))
 			this.triggers()
-			this.initiate()
+			this.initiate(targets)
 		}
 
-		initiate() {
+		initiate(targets) {
 			this.validColor(this._background) && $(this._overlay).css('background-color', this._background)
 
 			this._state == 'open' ? this.triggerOpen() : this.triggerClose()
@@ -38,13 +40,13 @@
 				if (e.keyCode === 27 && this._state == 'open' && this._escape == true) this.triggerClose()
 			})
 
-			$('body').on('click', '.toggle, [data-prowl="toggle"]', (e) => this.toggle())
+			this._toggles = $(targets).bind('click', (e) => this.toggle(e))
 		}
 
 		triggers() {
-
 			$(this._container).on('open', (e) => {
 				this._state = 'open'
+				$('body').addClass('locked')
 				$(this._container).removeClass('opening closing closed')
 					.addClass('open')
 					.attr('data-prowl-state', 'open')
@@ -52,6 +54,7 @@
 				if (this._opts.onOpen !== undefined) this._opts.onOpen(e)
 			}).on('close', (e) => {
 				this._state = 'closed'
+				$('body').removeClass('locked')
 				$(this._container).removeClass('closing opening open')
 					.addClass('closed')
 					.attr('data-prowl-state', 'closed')
@@ -75,69 +78,76 @@
 
 		}
 
-		triggerOpen() {
+		triggerOpen(e) {
 			$(`${this._container}`).trigger('opening')
-			this.open()
+			this.open(e)
 		}
 
-		triggerClose() {
+		triggerClose(e) {
 			$(`${this._container}`).trigger('closing')
-			this.close()
+			this.close(e)
 		}
 
-		open() {
+		open(e) {
 			$(this._container).fadeIn('fast', () => {
-				this.animate('open', false)
-				$('body').addClass('locked')
+				this.animate(e, 'open', false)
 			})
 		}
 
-		close() {
+		close(e) {
 			let _this = this
-			this.animate('close', function(status) {
+			this.animate(e, 'close', function(status) {
 				$(_this._container).fadeOut('fast')
-				$('body').removeClass('locked')
 			})
 		}
 
-		animate(type, cb) {
+		animate(target, type, cb) {
+
+			if (target !== undefined) {
+				let targetModal = $.grep($(this._modal), function(el) {
+					return $(el).data('prowl-id') == $(target.target).data('prowl-target')
+				})
+
+				this._target = targetModal[0]
+			}
+
 			switch (`${this._animate}_${type}`) {
 				case 'fade_open':
-					$(this._modal).fadeIn(this._duration)
+					$(this._target).fadeIn(this._duration)
 					break
 				case 'fade_close':
-					$(this._modal).fadeOut(this._duration)
+					$(this._target).fadeOut(this._duration)
 					break
 				case 'reveal_open':
-					$(this._modal).slideDown(this._duration)
+					$(this._target).slideDown(this._duration)
 					break
 				case 'reveal_close':
-					$(this._modal).slideUp(this._duration)
+					$(this._target).slideUp(this._duration)
 					break
 				case 'drop_open':
-					$(this._modal).css({
-						top: -$(this._modal).height(),
+					$(this._target).css({
+						top: -$(this._target).height(),
 						display: 'block'
 					}).animate({
 						 top : this.cssTop
 					}, this._duration)
 					break
 				case 'drop_close':
-					$(this._modal).animate({top: -$(this._modal).height()}, this._duration, () => {
-						$(this._modal).hide()
+					$(this._target).animate({top: -$(this._target).height()}, this._duration, () => {
+						$(this._target).hide()
 					})
 					break
 				case 'swash_open':
-					$(this._modal).css({
-						left: -$(this._modal).width(),
+					$(this._target).css({
+						left: -$(this._target).width(),
 						display: 'block'
 					}).animate({
 						 left : this.cssLeft
 					}, this._duration)
 					break
 				case 'swash_close':
-					$(this._modal).animate({left: $(window).width()}, this._duration, () => {
-						$(this._modal).hide()
+					$(this._target).animate({left: $(window).width()}, this._duration, () => {
+						$(this._target).hide()
 					})
 					break
 			}
@@ -153,11 +163,11 @@
 
 		}
 
-		toggle() {
+		toggle(e) {
 			if ($(this._container).hasClass("open"))
-				this.triggerClose()
+				this.triggerClose(e)
 			else if ($(this._container).hasClass("closed"))
-				this.triggerOpen()
+				this.triggerOpen(e)
 		}
 
 		validColor(color) {
@@ -174,8 +184,8 @@
 
 	$.fn.prowl = function(opts) {
 		opts = opts || {}
-		$this = $(this)
-		instance = new Prowl($this, opts)
+		let _this = $(this)
+		const instance = new Prowl(_this, opts)
 
 		return instance
 	}

@@ -1,9 +1,6 @@
 body {
   font-family: 'Europa', sans-serif;
 }
-.prowl .float-right {
-  float: right;
-}
 .prowl .button {
   display: inline-block;
   position: relative;
@@ -15,9 +12,9 @@ body {
   padding: 0 2rem;
   text-align: center;
   border: 0;
-  height: 3em;
+  height: 3rem;
   line-height: 2.9em;
-  font-size: 1em;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   -webkit-transition: all 0.2s ease;

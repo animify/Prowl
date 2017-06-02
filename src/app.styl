@@ -17,22 +17,22 @@ body
 
 nav
 	padding .8rem 3rem
-	background-color primary-color
+	background-color #fff
+	border-bottom 1px solid lighten(#b0adba, 60%)
 	fixed top
+	z-index 100
 	span(1/1)
 	.logo
 		display inline-block
 		vertical-align top
 		h3
 			font-size 1rem
-			color #fff
 	.links
 		display inline-block
 		vertical-align top
 		float right
 		a
 			font-size 1rem
-			color #fff
 
 pre
 	tab-size 4
@@ -44,8 +44,16 @@ pre
 	fixed bottom
 	z-index 0
 
+.button
+	padding 0 2rem
+	height 3rem
+	line-height 2.9em
+	font-size 1rem
+	font-weight 600
+	border-radius 100px
+
 .content
-	padding-top 3.5rem
+	padding-top 2.8rem
 	width 100%
 	min-height 100%
 	.inner
@@ -62,12 +70,16 @@ pre
 		margin-bottom 1rem
 	b
 		display block
+	p b
+		display inline-block
+		margin 0
 	.section-content
 		border-top lighten(#b0adba, 60%) 1px solid
 		padding 1.4rem 0
 		margin-top 1.4rem
 	.list
 		position fixed
+		z-index 0
 		.item
 			a
 				color lighten(#4c5767, 40%)
@@ -83,7 +95,7 @@ pre
 .hljs
 	display block
 	overflow-x auto
-	padding 0.8rem 1rem
+	padding 0.8rem 1.2rem
 	color #4c5767
 	background #f2f4f8
 	border-radius 14px
@@ -92,13 +104,13 @@ pre
 
 .hljs-comment,
 .hljs-quote
-	color #998
+	color lighten(#4c5767, 40%)
 	font-style italic
 
 .hljs-keyword,
 .hljs-selector-tag,
 .hljs-subst
-	color #333
+	color lighten(#4c5767, 20%)
 	font-weight bold
 
 .hljs-number,
