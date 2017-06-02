@@ -2,7 +2,7 @@
 @import 'jeet'
 @import 'rupture'
 
-html
+body
 	&.locked
 		overflow hidden
 		touch-action none
@@ -13,6 +13,7 @@ html
 		span(1/1)
 		height 100%
 		fixed top left
+		z-index 2000
 	&-modal
 		display none
 		width 50%
@@ -23,7 +24,8 @@ html
 			width 0
 			display block
 		+below('m')
-			fixed top 0
+			position fixed
+			top 0 !important
 			left 0 !important
 			transform translate(0)
 			width 100%

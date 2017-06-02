@@ -3,6 +3,11 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Prowl JS</title>
+		<meta charset="UTF-8"/>
+		<meta name="description" content="A free and extensive jQuery modal plugin"/>
+		<meta name="robots" content="index, follow"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<link rel="icon" type="image/png" href="/assets/images/favicon.png"/>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link rel="stylesheet" href="blossom.min.css">
 		<link rel="stylesheet" href="app.css">
@@ -19,10 +24,9 @@
 				</div>
 				<div class="links">
 					<ul class="list horizontal">
-						<li class="item"><a href="https://github.com/Aotik/Prowl/wiki/ProwlJS" target="_blank">Docs</a></li>
-						<li class="item"><a href="https://github.com/Aotik/Prowl" target="_blank">Github</a></li>
-						<li class="item"><a href="" target="_blank">CDN</a></li>
-						<li class="item"><a href="https://github.com/Aotik/Prowl/issues" target="_blank">Issues</a></li>
+						<li class="item"><a href="https://github.com/aotik/Prowl/issues" rel="noreferrer noopener" target="_blank">Download</a></li>
+						<li class="item"><a href="https://github.com/aotik/Prowl" rel="noreferrer noopener" target="_blank">Open source</a></li>
+						<li class="item"><a href="https://github.com/aotik/Prowl/issues" rel="noreferrer noopener" target="_blank">Issues</a></li>
 					</ul>
 				</div>
 			</nav>
@@ -47,6 +51,7 @@
 									<p>Welcome to the ProwlJS Docs.</p>
 									<p>Prowl is a jQuery plugin which enables an extensively customisable modal to be implemented on any site.</p>
 									<p>Get started with the setup below</p>
+									<a class="animation-bounce" data-prowl="toggle">Click here to try it out!</a>
 								</div>
 							</section>
 							<section id="section-setup">
@@ -58,33 +63,31 @@
 									<pre>
 										<code class="hljs">&lt;link rel=&quot;stylesheet&quot; href=&quot;../dist/prowl.css&quot;&gt;&#10;&lt;link rel=&quot;stylesheet&quot; href=&quot;../dist/prowl_theme.css&quot;&gt;</code>
 									</pre>
-									<p>Include the JS just before </body></p>
+									<p>Include the JS just before <code>&lt;/body&gt;</code></p>
 									<pre>
 										<code class="hljs">&lt;script src=&quot;../dist/prowl.js&quot;&gt;&lt;/script&gt;</code>
 									</pre>
-									<p>Create the basic modal</p>
+									<p>Structure a basic modal with HTML:</p>
 									<pre>
 										<code class="hljs">&lt;a class=&quot;open&quot;&gt;Open the modal&lt;/a&gt;
 &lt;div class=&quot;prowl&quot;&gt;
 	&lt;div class=&quot;prowl-overlay&quot;&gt;
-	&lt;div class=&quot;prowl-modal&quot;&gt;
-		&lt;h2&gt;It's a modal!&lt;/h2&gt;
-		&lt;div class=&quot;button toggle&quot;&gt;
-				Close
+		&lt;div class=&quot;prowl-modal&quot;&gt;
+			&lt;h2&gt;It's a modal!&lt;/h2&gt;
+			&lt;div class=&quot;button toggle&quot;&gt;Close&lt;/div&gt;
 		&lt;/div&gt;
-	&lt;/div&gt;
 	&lt;/div&gt;
 &lt;/div&gt;</code>
 									</pre>
-									<p>Initiate it based on what toggle you want to trigger the modal (we use the class .open from the html above)</p>
+									<p>Initiate the modal by using the class used for the toggle:</p>
 									<pre>
-										<code class="hljs">$('.open').prowl()</code>
+										<code class="hljs">$('.open').prowl() //We used the .open class in the modal markup</code>
 									</pre>
 								</div>
 							</section>
 							<section id="section-options">
 								<h4>Options</h4>
-								<h6>Available options for the Prowl object</h6>
+								<h6>Available &amp; default options for the Prowl object</h6>
 								<div class="section-content">
 									<p>You can pass additional options to Prowl</p>
 									<b>container</b>
@@ -137,7 +140,7 @@
 								<h4>Methods</h4>
 								<h6>Types of methods exposed</h6>
 								<div class="section-content">
-									<p>Assign the instance to a variable and take advantage of methods:</p>
+									<p>Assign the instance to a variable and use the exposed methods as defined below:</p>
 									<pre>
 										<code class="hljs">let inst = $('.open').prowl()</code>
 									</pre>
@@ -172,9 +175,10 @@
 								<h4>Events</h4>
 								<h6>Perform actions when events are triggered</h6>
 								<div class="section-content">
-									<p>Assign functions to inner events on state transitions</p>
+									<p>Assign functions to triggered events on state transitions by passing the custom function to the Prowl object.</p>
+									<br/>
 									<b>onOpen</b>
-									<p>Calls the passed function when the modal opens.</p>
+									<p>Calls the custom function when the modal opens.</p>
 									<pre>
 										<code class="hljs">let inst = $('.click').prowl({
 	onOpen: () => {
@@ -183,7 +187,7 @@
 })</code>
 									</pre>
 									<b>onClose</b>
-									<p>Calls the passed function when the modal closes.</p>
+									<p>Calls the custom function when the modal closes.</p>
 									<pre>
 										<code class="hljs">let inst = $('.click').prowl({
 	onClose: () => {
@@ -192,7 +196,7 @@
 })</code>
 									</pre>
 									<b>onOpening</b>
-									<p>Calls the passed function when the modal is opening (the time between the trigger to the time the animation finishes).</p>
+									<p>Calls the custom function when the modal is opening (the time between the trigger to the time the animation finishes).</p>
 									<pre>
 										<code class="hljs">let inst = $('.click').prowl({
 	onOpening: () => {
@@ -201,7 +205,7 @@
 })</code>
 									</pre>
 									<b>onClosing</b>
-									<p>Calls the passed function when the modal is closing (the time between the trigger to the time the animation finishes).</p>
+									<p>Calls the custom function when the modal is closing (the time between the trigger to the time the animation finishes).</p>
 									<pre>
 										<code class="hljs">let inst = $('.click').prowl({
 	onClosing: () => {

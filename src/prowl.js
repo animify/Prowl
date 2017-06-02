@@ -16,8 +16,8 @@
 
 			this._toggle.charAt(0) == '.' ? this._toggle : `.${this._toggle}`
 
-			this.cssTop = "50%"
-			this.cssLeft = "50%"
+			this.cssTop = $(this._modal).css('top')
+			this.cssLeft = $(this._modal).css('left')
 			this.cssBottom = $(this._modal).css('bottom')
 			this.cssRight = $(this._modal).css('right')
 			this.cssTransform = $(this._modal).css('-webkit-transform').split(/[()]/)[1]
@@ -88,6 +88,7 @@
 		open() {
 			$(this._container).fadeIn('fast', () => {
 				this.animate('open', false)
+				$('body').addClass('locked')
 			})
 		}
 
@@ -95,6 +96,7 @@
 			let _this = this
 			this.animate('close', function(status) {
 				$(_this._container).fadeOut('fast')
+				$('body').removeClass('locked')
 			})
 		}
 
