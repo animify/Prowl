@@ -1,6 +1,6 @@
 {
 	"name": "prowl",
-	"version": "1.0.0",
+	"version": "1.2.1",
 	"description": "Modal plugin for jQuery",
 	"main": "start.js",
 	"scripts": {

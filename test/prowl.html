@@ -8,7 +8,7 @@
 		<link rel="stylesheet" href="app.css">
 		<link rel="stylesheet" href="prowl.css">
 		<link rel="stylesheet" href="prowl_theme.css">
-		<script src="https://use.typekit.net/hgl4upg.js"></script>
+		<script src="//use.typekit.net/hgl4upg.js"></script>
 		<script>try{Typekit.load({ async: false });}catch(e){}</script>
 	</head>
 	<body>
@@ -31,18 +31,18 @@
 				<div class="inner">
 					<div class="row">
 						<div class="col xs-12 m-2">
-							<ul class="list">
-								<li class="item active"><a href="#ay">Introduction</a></li>
-								<li class="item"><a href="#ay">Setup</a></li>
-								<li class="item"><a href="#ay">Options</a></li>
-								<li class="item"><a href="#ay">Methods</a></li>
-								<li class="item"><a href="#ay">Events</a></li>
+							<ul id="list-spy" class="list">
+								<li class="item"><a href="#section-introduction">Introduction</a></li>
+								<li class="item"><a href="#section-setup">Setup</a></li>
+								<li class="item"><a href="#section-options">Options</a></li>
+								<li class="item"><a href="#section-methods">Methods</a></li>
+								<li class="item"><a href="#section-events">Events</a></li>
 							</ul>
 						</div>
 						<div class="col xs-12 m-10">
 							<section id="section-introduction">
 								<h4>Introduction</h4>
-								<p>Introduction guide to Prowl</p>
+								<h6>Introduction guide to Prowl</h6>
 								<div class="section-content">
 									<p>Welcome to the ProwlJS Docs.</p>
 									<p>Prowl is a jQuery plugin which enables an extensively customisable modal to be implemented on any site.</p>
@@ -51,164 +51,163 @@
 							</section>
 							<section id="section-setup">
 								<h4>Setup</h4>
-								<p>Installing and setting up Prowl</p>
+								<h6>Installing and setting up Prowl</h6>
 								<div class="section-content">
 									<p>Download the latest distribution files from the repo.</p>
 									<p>Include the CSS files in the head of your page (prowl.css is required unless you know what you're doing):</p>
 									<pre>
-										<xmp><link rel="stylesheet" href="../dist/prowl.css">
-<link rel="stylesheet" href="../dist/prowl_theme.css"></xmp>
+										<code class="hljs">&lt;link rel=&quot;stylesheet&quot; href=&quot;../dist/prowl.css&quot;&gt;&#10;&lt;link rel=&quot;stylesheet&quot; href=&quot;../dist/prowl_theme.css&quot;&gt;</code>
 									</pre>
 									<p>Include the JS just before </body></p>
 									<pre>
-										<xmp><script src="../dist/prowl.js"></script></xmp>
+										<code class="hljs">&lt;script src=&quot;../dist/prowl.js&quot;&gt;&lt;/script&gt;</code>
 									</pre>
 									<p>Create the basic modal</p>
 									<pre>
-										<xmp><a class="open">Open the modal</a>
-<div class="prowl">
-	<div class="prowl-overlay">
-	<div class="prowl-modal">
-		<h2>It's a modal!</h2>
-		<div class="button toggle">
+										<code class="hljs">&lt;a class=&quot;open&quot;&gt;Open the modal&lt;/a&gt;
+&lt;div class=&quot;prowl&quot;&gt;
+	&lt;div class=&quot;prowl-overlay&quot;&gt;
+	&lt;div class=&quot;prowl-modal&quot;&gt;
+		&lt;h2&gt;It's a modal!&lt;/h2&gt;
+		&lt;div class=&quot;button toggle&quot;&gt;
 				Close
-		</div>
-	</div>
-	</div>
-</div></xmp>
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code>
 									</pre>
 									<p>Initiate it based on what toggle you want to trigger the modal (we use the class .open from the html above)</p>
 									<pre>
-										<xmp>$('.open').prowl()</xmp>
+										<code class="hljs">$('.open').prowl()</code>
 									</pre>
 								</div>
 							</section>
 							<section id="section-options">
 								<h4>Options</h4>
-								<p>Available options for the Prowl object</p>
+								<h6>Available options for the Prowl object</h6>
 								<div class="section-content">
 									<p>You can pass additional options to Prowl</p>
 									<b>container</b>
 									<pre>
-										<xmp>Default: .prowl</xmp>
+										<code class="hljs http">Default: .prowl</code>
 									</pre>
 									<b>toggleClass</b>
 									<p>Add what class name will be appended to the toggle element on state change.</p>
 									<pre>
-										<xmp>Default: .prowl-toggle</xmp>
+										<code class="hljs http">Default: .prowl-toggle</code>
 									</pre>
 									<b>overlay</b>
 									<p>The element class of the overlay of the modal.</p>
 									<pre>
-										<xmp>Default: .prowl-overlay</xmp>
+										<code class="hljs http">Default: .prowl-overlay</code>
 									</pre>
 									<b>modal</b>
 									<p>The element class of the modal itself.</p>
 									<pre>
-										<xmp>Default: .prowl-modal</xmp>
+										<code class="hljs http">Default: .prowl-modal</code>
 									</pre>
 									<b>background</b>
 									<p>Override the color of the overlay background, formatted in hex, rgba or rgb.</p>
 									<pre>
-										<xmp>Default: rgba(149, 155, 160, 0.57)</xmp>
+										<code class="hljs http">Default: rgba(149, 155, 160, 0.57)</code>
 									</pre>
 									<b>animate</b>
 									<p>Choose animation of how the modal enters and exits. Options are fade, reveal, swash and drop.</p>
 									<pre>
-										<xmp>Default: fade</xmp>
+										<code class="hljs http">Default: fade</code>
 									</pre>
 									<b>duration</b>
 									<p>The speed of the animation in ms.</p>
 									<pre>
-										<xmp>Default: 200</xmp>
+										<code class="hljs http">Default: 200</code>
 									</pre>
 									<b>closeOnEscape</b>
 									<p>If set to true, the modal closes when the escape key is pressed.</p>
 									<pre>
-										<xmp>Default: true</xmp>
+										<code class="hljs http">Default: true</code>
 									</pre>
 									<b>state</b>
 									<p>Override the initial state of the modal. Options are open, closed</p>
 									<pre>
-										<xmp>Default: closed</xmp>
+										<code class="hljs http">Default: closed</code>
 									</pre>
 								</div>
 							</section>
 							<section id="section-methods">
 								<h4>Methods</h4>
-								<p>Types of methods exposed</p>
+								<h6>Types of methods exposed</h6>
 								<div class="section-content">
 									<p>Assign the instance to a variable and take advantage of methods:</p>
 									<pre>
-										<xmp>let inst = $('.open').prowl()</xmp>
+										<code class="hljs">let inst = $('.open').prowl()</code>
 									</pre>
 									<b>open()</b>
 									<p>Opens the modal.</p>
 									<pre>
-										<xmp>inst.open()</xmp>
+										<code class="hljs">inst.open()</code>
 									</pre>
 									<b>close()</b>
 									<p>Closes the modal.</p>
 									<pre>
-										<xmp>inst.close()</xmp>
+										<code class="hljs">inst.close()</code>
 									</pre>
 									<b>getState()</b>
 									<p>Gets the current state of the modal.</p>
 									<pre>
-										<xmp>inst.getState()</xmp>
+										<code class="hljs">inst.getState()</code>
 									</pre>
 									<b>toggle()</b>
 									<p>Toggles the current visibility of the modal.</p>
 									<pre>
-										<xmp>inst.toggle()</xmp>
+										<code class="hljs">inst.toggle()</code>
 									</pre>
 									<b>validColor(color)</b>
 									<p>Pass a color and check if it is valid for the overlay background.</p>
 									<pre>
-										<xmp>inst.validColor("#000000")</xmp>
+										<code class="hljs">inst.validColor("#000000")</code>
 									</pre>
 								</div>
 							</section>
 							<section id="section-events">
 								<h4>Events</h4>
-								<p>Perform actions when events are triggered</p>
+								<h6>Perform actions when events are triggered</h6>
 								<div class="section-content">
 									<p>Assign functions to inner events on state transitions</p>
 									<b>onOpen</b>
 									<p>Calls the passed function when the modal opens.</p>
 									<pre>
-										<xmp>let inst = $('.click').prowl({
+										<code class="hljs">let inst = $('.click').prowl({
 	onOpen: () => {
 		console.log('Modal has opened')
 	}
-})</xmp>
+})</code>
 									</pre>
 									<b>onClose</b>
 									<p>Calls the passed function when the modal closes.</p>
 									<pre>
-										<xmp>let inst = $('.click').prowl({
+										<code class="hljs">let inst = $('.click').prowl({
 	onClose: () => {
 		console.log('Modal has closed')
 	}
-})</xmp>
+})</code>
 									</pre>
 									<b>onOpening</b>
 									<p>Calls the passed function when the modal is opening (the time between the trigger to the time the animation finishes).</p>
 									<pre>
-										<xmp>let inst = $('.click').prowl({
+										<code class="hljs">let inst = $('.click').prowl({
 	onOpening: () => {
 		console.log('Modal is opening')
 	}
-})</xmp>
+})</code>
 									</pre>
 									<b>onClosing</b>
 									<p>Calls the passed function when the modal is closing (the time between the trigger to the time the animation finishes).</p>
 									<pre>
-										<xmp>let inst = $('.click').prowl({
+										<code class="hljs">let inst = $('.click').prowl({
 	onClosing: () => {
 		console.log('Modal is closing')
 	}
-})</xmp>
+})</code>
 									</pre>
 								</div>
 							</section>
@@ -217,25 +216,6 @@
 				</div>
 			</div>
 		</div>
-		<!-- <div class="content">
-			<div class="center">
-				<div class="logo">
-					<div class="contain">
-						<img src="prowl.png" alt="">
-					</div>
-				</div>
-				<a data-prowl="toggle">Try me out!</a>
-			</div>
-			<div class="bottom">
-				<ul class="list">
-					<li class="item"><a href="https://github.com/Aotik/Prowl/wiki/ProwlJS" target="_blank">Docs</a></li>
-					<li class="item"><a href="https://github.com/Aotik/Prowl" target="_blank">Github</a></li>
-					<li class="item"><a href="" target="_blank">CDN</a></li>
-					<li class="item"><a href="https://github.com/Aotik/Prowl/issues" target="_blank">Issues</a></li>
-				</ul>
-				<p>Handcrafted by <b><a href="https://cindr.io">cindr.io</a></b></p>
-			</div>
-		</div> -->
 
 		<div class="prowl closed">
 			<div class="prowl-close toggle">
@@ -262,10 +242,59 @@
 		</div>
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 		<script src="prowl.js" charset="utf-8"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 		<script type="text/javascript">
 		$('.toggle').prowl({
 			animate: 'drop'
 		})
+
+		let lastId = null
+		const docMenu = $("#list-spy")
+
+		const menuItems = docMenu.find("a")
+
+		const scrollItems = menuItems.map(function(){
+			let item = $($(this).attr("href"))
+			if (item.length) { return item }
+		})
+
+		const activateLink = () => {
+			const fromTop = $(this).scrollTop()
+
+			let cur = scrollItems.map(function(){
+				if ($(this).offset().top < fromTop + 105) return this
+			})
+
+			cur = cur[cur.length-1]
+			const id = cur && cur.length ? cur[0].id : ""
+
+			if (lastId !== id) {
+				lastId = id
+				menuItems.parent().removeClass("active").end().filter("[href='#"+id+"']").parent().addClass("active")
+			 }
+		}
+
+		menuItems.click(function(e){
+			const href = $(this).attr("href")
+			const offsetTop = href === "#" ? 0 : $(href).offset().top - 100
+
+			console.log(offsetTop, href);
+			$('html, body').stop().animate({
+				scrollTop: offsetTop
+			}, 300)
+			e.preventDefault()
+		})
+
+		activateLink()
+
+		$(window).scroll(() => activateLink())
+
+
+		$(document).ready(function() {
+			$('pre code').each(function(i, block) {
+				hljs.highlightBlock(block);
+			});
+		});
 		</script>
 	</body>
 </html>

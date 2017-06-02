@@ -5,14 +5,11 @@
 primary-color = #3a52b2
 
 body
-	background-color primary-color
-	overflow hidden
 	font-size 18px
 	min-height 100%
 	a
 		color primary-color
 		font-size 1rem
-		font-weight 600
 		&:hover
 			color darken(primary-color, 20%)
 .container
@@ -20,9 +17,10 @@ body
 
 nav
 	padding .8rem 3rem
+	background-color primary-color
 	fixed top
 	span(1/1)
-	z-index -1
+	z-index 400
 	.logo
 		display inline-block
 		vertical-align top
@@ -40,17 +38,6 @@ nav
 pre
 	tab-size 4
 
-xmp
-	background-color #f2f4f8
-	color #435ce2
-	padding .8rem 1rem
-	border-radius 14px
-	font-family 'Roboto Mono', 'Consolas', 'Monaco', 'Lucida Console', monospace
-	line-height 1.6rem
-	font-size .9rem
-	font-weight 500
-	margin -1rem 0
-
 .white-fade
 	span(1/1)
 	height 6rem
@@ -59,20 +46,17 @@ xmp
 	z-index 0
 
 .content
-	padding-top 3.6rem
-	height 100vh
-	overflow hidden
+	padding-top 3.5rem
 	width 100%
+	min-height 100%
 	.inner
 		background-color #fff
-		border-radius 28px 28px 0 0
-		box-shadow 0 0 50px 0 primary-color, 0 -4px 7px 0 rgba(0, 0, 0, .1), 0 -1px 10px 0 rgba(0, 0, 0, .5)
-		height 100%
 		width 100%
 		padding 3rem
-		overflow-y scroll
-	h4
+	h4, h6
 		font-weight 300
+	h6
+		color lighten(#4c5767, 20%)
 	section + section
 		margin-top 1.4rem
 	p, b, pre
@@ -87,7 +71,7 @@ xmp
 		position fixed
 		.item
 			a
-				color #b0adba
+				color lighten(#4c5767, 40%)
 			&.active
 				a
 					color primary-color
@@ -95,3 +79,84 @@ xmp
 				margin-top .4rem
 		+below('m')
 			position relative
+
+
+.hljs
+	display block
+	overflow-x auto
+	padding 0.8rem 1rem
+	color #4c5767
+	background #f2f4f8
+	border-radius 14px
+	font-size 1rem
+	font-family 'inconsolata', 'Monaco', 'Lucida Console', monospace
+
+.hljs-comment,
+.hljs-quote
+	color #998
+	font-style italic
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst
+	color #333
+	font-weight bold
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr
+	color #00af86
+
+.hljs-string,
+.hljs-doctag
+	color #da0b6b
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id
+	color #da0b6b
+	font-weight bold
+
+.hljs-subst
+	font-weight normal
+
+.hljs-type,
+.hljs-class .hljs-title
+	color #458
+	font-weight bold
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute
+	color primary-color
+	font-weight normal
+
+.hljs-regexp,
+.hljs-link
+	color #009926
+
+.hljs-symbol,
+.hljs-bullet
+	color #990073
+
+.hljs-built_in,
+.hljs-builtin-name
+	color #01a8da
+
+.hljs-meta
+	color #999
+	font-weight bold
+
+.hljs-deletion
+	background #fdd
+
+.hljs-addition
+	background #dfd
+
+.hljs-emphasis
+	font-style italic
+
+.hljs-strong
+	font-weight bold
