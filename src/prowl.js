@@ -8,7 +8,8 @@
 			this._target = null
 			this._toggle = opts.toggleClass || '.prowl-toggle'
 			this._overlay = opts.overlayClass || '.prowl-overlay'
-			this._modal = opts.modalClass || '.prowl-modal';
+			this._modal = opts.modalClass || '.prowl-modal'
+			this._isMobile = false;
 
 			(window.prowlToggles != undefined) ? this.removeBinding() : this.reset()
 
@@ -21,7 +22,9 @@
 			this._toggle.charAt(0) == '.' ? this._toggle : `.${this._toggle}`
 
 			this.cssTop = $(this._modal).css('top')
+			this.cssMobileTop = 0
 			this.cssLeft = $(this._modal).css('left')
+			this.cssMobileLeft = 0
 			this.cssBottom = $(this._modal).css('bottom')
 			this.cssRight = $(this._modal).css('right')
 			this.cssTransform = $(this._modal).css('-webkit-transform').split(/[()]/)[1]
@@ -34,11 +37,19 @@
 		}
 
 		initiate(targets) {
+			let checkWidth = () => {
+				($(this._modal).css("position") == "fixed" ) ? this._isMobile = true : this._isMobile = false
+			}
+
 			this.validColor(this._background) && $(this._overlay).css('background-color', this._background)
 
 			this._state == 'open' ? this.triggerOpen() : this.triggerClose()
 
 			window.prowlEscape = $(document).keyup((e) => (e.keyCode === 27 && this._state == 'open' && this._escape == true) && this.triggerClose())
+
+			checkWidth()
+
+			window.prowlMobile = $(window).resize(checkWidth)
 
 			if ($(targets).length)
 				window.prowlToggles = $(targets).bind('click', (e) => this.toggle(e))
@@ -47,11 +58,13 @@
 		reset() {
 			window.prowlToggles = null
 			window.prowlEscape = null
+			window.prowlMobile = null
 		}
 
 		removeBinding() {
 			window.prowlToggles.unbind()
 			window.prowlEscape.unbind()
+			window.prowlMobile.unbind()
 			$(this._modal).removeAttr('style')
 		}
 
@@ -130,7 +143,10 @@
 					$(this._target).fadeOut(this._duration)
 					break
 				case 'reveal_open':
-					$(this._target).slideDown(this._duration)
+					$(this._target).css({
+						top : !this._isMobile ? this.cssTop : this.cssMobileTop,
+						left : !this._isMobile ? this.cssLeft : this.cssMobileLeft
+					}).slideDown(this._duration)
 					break
 				case 'reveal_close':
 					$(this._target).slideUp(this._duration)
@@ -138,9 +154,10 @@
 				case 'drop_open':
 					$(this._target).css({
 						top: -$(this._target).height(),
+						left : !this._isMobile ? this.cssLeft : this.cssMobileLeft,
 						display: 'block'
 					}).animate({
-						 top : this.cssTop
+						 top : !this._isMobile ? this.cssTop : this.cssMobileTop
 					}, this._duration)
 					break
 				case 'drop_close':
@@ -150,16 +167,15 @@
 					break
 				case 'swash_open':
 					$(this._target).css({
+						top : !this._isMobile ? this.cssTop : this.cssMobileTop,
 						left: -$(this._target).width(),
 						display: 'block'
 					}).animate({
-						 left : this.cssLeft
+						 left : !this._isMobile ? this.cssLeft : this.cssMobileLeft
 					}, this._duration)
 					break
 				case 'swash_close':
-					$(this._target).animate({left: $(window).width()}, this._duration, () => {
-						$(this._target).hide()
-					})
+					$(this._target).animate({left: $(window).width()}, this._duration, () => $(this._target).hide())
 					break
 			}
 

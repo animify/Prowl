@@ -48,8 +48,6 @@ body.locked {
 @media only screen and (max-width: 800px) {
   .prowl-modal {
     position: fixed;
-    top: 0 !important;
-    left: 0 !important;
     -webkit-transform: translate(0);
     -moz-transform: translate(0);
     -o-transform: translate(0);
