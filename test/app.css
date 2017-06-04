@@ -159,16 +159,16 @@ pre {
 .hljs-variable,
 .hljs-template-variable,
 .hljs-tag .hljs-attr {
-  color: #00af86;
+  color: #3a52b2;
 }
 .hljs-string,
 .hljs-doctag {
-  color: #da0b6b;
+  color: #ef0f81;
 }
 .hljs-title,
 .hljs-section,
 .hljs-selector-id {
-  color: #da0b6b;
+  color: #ef0f81;
   font-weight: bold;
 }
 .hljs-subst {
@@ -179,10 +179,13 @@ pre {
   color: #458;
   font-weight: bold;
 }
-.hljs-tag,
-.hljs-name,
 .hljs-attribute {
+  font-weight: bold;
   color: #3a52b2;
+}
+.hljs-tag,
+.hljs-name {
+  color: #5a677a;
   font-weight: normal;
 }
 .hljs-regexp,

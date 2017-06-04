@@ -98,6 +98,7 @@
 									<pre>
 										<code class="hljs">$('.open').prowl(options) //We used the .open class in the modal markup</code>
 									</pre>
+									<b class="text-yellow">Re-initiate Prowl, as above, when toggles are added dynamically to register event bindings on the new element.</b>
 								</div>
 							</section>
 							<section id="section-options">
@@ -284,8 +285,7 @@
 		<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 		<script type="text/javascript">
 		let options = {
-			animate: 'drop',
-			duration: 200
+			animate: 'drop'
 		}
 
 		let inst = $('.toggle').prowl(options)
@@ -309,7 +309,7 @@
 		const activateLink = () => {
 			const fromTop = $(this).scrollTop()
 
-			let cur = scrollItems.map(function(){
+			let cur = scrollItems.map(function() {
 				if ($(this).offset().top < fromTop + 105) return this
 			})
 
@@ -338,6 +338,7 @@
 			activateLink()
 			$('pre code').each((i, block) => hljs.highlightBlock(block))
 		})
+		
 		</script>
 	</body>
 </html>
