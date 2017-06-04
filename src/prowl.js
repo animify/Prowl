@@ -6,10 +6,12 @@
 			this._pluginname = 'ProwlJS'
 			this._container = opts.containerClass || '.prowl'
 			this._target = null
-			this._toggles = null
 			this._toggle = opts.toggleClass || '.prowl-toggle'
 			this._overlay = opts.overlayClass || '.prowl-overlay'
-			this._modal = opts.modalClass || '.prowl-modal'
+			this._modal = opts.modalClass || '.prowl-modal';
+
+			(window.prowlToggles != undefined) ? this.removeBinding() : this.reset()
+
 			this._background = opts.background || 'rgba(12, 13, 13, 0.57)'
 			this._animate = 'fade reveal swash drop'.includes(opts.animate) ? opts.animate : 'fade' || 'fade'
 			this._duration = opts.duration || 200
@@ -36,11 +38,21 @@
 
 			this._state == 'open' ? this.triggerOpen() : this.triggerClose()
 
-			$(document).keyup((e) => {
-				if (e.keyCode === 27 && this._state == 'open' && this._escape == true) this.triggerClose()
-			})
+			window.prowlEscape = $(document).keyup((e) => (e.keyCode === 27 && this._state == 'open' && this._escape == true) && this.triggerClose())
 
-			this._toggles = $(targets).bind('click', (e) => this.toggle(e))
+			if ($(targets).length)
+				window.prowlToggles = $(targets).bind('click', (e) => this.toggle(e))
+		}
+
+		reset() {
+			window.prowlToggles = null
+			window.prowlEscape = null
+		}
+
+		removeBinding() {
+			window.prowlToggles.unbind()
+			window.prowlEscape.unbind()
+			$(this._modal).removeAttr('style')
 		}
 
 		triggers() {
@@ -95,9 +107,8 @@
 		}
 
 		close(e) {
-			let _this = this
-			this.animate(e, 'close', function(status) {
-				$(_this._container).fadeOut('fast')
+			this.animate(e, 'close', (status) => {
+				$(this._container).fadeOut('fast')
 			})
 		}
 
@@ -164,9 +175,9 @@
 		}
 
 		toggle(e) {
-			if ($(this._container).hasClass("open"))
-				this.triggerClose(e)
-			else if ($(this._container).hasClass("closed"))
+			if (this._state == 'open')
+				this.triggerClose()
+			else if (this._state == 'closed')
 				this.triggerOpen(e)
 		}
 

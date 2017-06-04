@@ -30,11 +30,8 @@ body
 		&.green
 			background-color primary-color
 			color #fff
-	&-overlay
-		background-color #000
-		background-color rgba(12, 13, 13, 0.57)
 	&-close
-		fixed top 2em right 2em
+		fixed top 2rem right 2rem
 		z-index 4000
 		text-align center
 		cursor pointer
@@ -43,6 +40,8 @@ body
 		line-height 3.4rem
 		width 2.8rem
 		height 2.8rem
+		transform scale(0)
+		transition all 200ms ease
 		i
 			color rgba(38, 44, 67, 1)
 			font-size 1.4rem
@@ -50,9 +49,10 @@ body
 			background-color primary-color
 			i
 				color #fff
+	&.open
+		.prowl-close
+			transform scale(1)
 	&-modal
-		background-color #fff
-		content ''
 		border-radius 14px
 		&_header, &_body, &_footer
 			padding 0 2.4em

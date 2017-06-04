@@ -24,6 +24,8 @@ body.locked {
 .prowl-overlay {
   height: 100%;
   width: 100%;
+  background-color: #000;
+  background-color: rgba(12,13,13,0.57);
 }
 .prowl-modal {
   display: none;
@@ -36,6 +38,7 @@ body.locked {
   -o-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+  background-color: #fff;
 }
 .prowl-modal.scale {
   height: 0;
