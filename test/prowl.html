@@ -8,11 +8,11 @@
 		<meta name="robots" content="index, follow"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 		<link rel="icon" type="image/png" href="/assets/images/favicon.png"/>
-		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link rel="stylesheet" href="blossom.min.css">
 		<link rel="stylesheet" href="app.css">
-		<link rel="stylesheet" href="prowl.css">
-		<link rel="stylesheet" href="prowl_theme.css">
+		<link rel="stylesheet" href="//cdn.darken.io/prowljs/latest/prowl.css">
+		<link rel="stylesheet" href="//cdn.darken.io/prowljs/latest/prowl_theme.css">
 		<script src="//use.typekit.net/hgl4upg.js"></script>
 		<script>try{Typekit.load({ async: false });}catch(e){}</script>
 	</head>
@@ -22,16 +22,18 @@
 				<div class="logo">
 					<h3>ProwlJS</h3>
 				</div>
+				<div class="mobile">
+					<a><i class="material-icons">menu</i></a>
+				</div>
 				<div class="links">
 					<ul class="list horizontal">
-						<li class="item"><a href="https://github.com/aotik/Prowl/issues" rel="noreferrer noopener" target="_blank">Download</a></li>
+						<li class="item"><a class="toggle" data-prowl-target="download">Download</a></li>
 						<li class="item"><a href="https://github.com/aotik/Prowl" rel="noreferrer noopener" target="_blank">Open source</a></li>
 						<li class="item"><a href="https://github.com/aotik/Prowl/issues" rel="noreferrer noopener" target="_blank">Issues</a></li>
 					</ul>
 				</div>
 			</nav>
 			<div class="content">
-				<div class="white-fade"></div>
 				<div class="inner">
 					<div class="row">
 						<div class="col xs-12 m-2">
@@ -65,7 +67,7 @@
 									</pre>
 									<p>Include the JS file just before <code>&lt;/body&gt;</code>:</p>
 									<pre>
-										<code class="hljs">&lt;script src=&quot;/dist/prowl.js&quot;&gt;&lt;/script&gt;</code>
+										<code class="hljs">&lt;script src=&quot;/dist/prowl.min.js&quot;&gt;&lt;/script&gt;</code>
 									</pre>
 									<p>Structure a basic modal with HTML:</p>
 									<pre>
@@ -233,6 +235,12 @@
 									</pre>
 								</div>
 							</section>
+							<section class="more">
+								<div class="block">
+									<a href="https://github.com/aotik/Prowl" target="_blank" rel="noreferrer noopener">More over at the open-source repository <i class="material-icons">keyboard_arrow_right</i></a>
+									<small>Copyright &copy; 2017 Cindr.io</small>
+								</div>
+							</section>
 						</div>
 					</div>
 				</div>
@@ -246,42 +254,47 @@
 			<div class="prowl-overlay">
 				<div class="prowl-modal" data-prowl-id="what">
 					<div class="prowl-modal_header">
-						<h2>What is Prowl JS?</h2>
+						<h2>You found me!</h2>
 					</div>
 					<div class="prowl-modal_body">
-						<p>Well you're looking at it. Prowl is a jQuery plugin which enables an extensively customisable modal to be implemented on any site.</p>
-						<p>It takes a few minutes to setup, here's the link to the <a href="#">CDN</a>.</p>
+						<p>Well you're looking at it. This is an example modal that Prowl handles!</p>
+						<p>It takes a few minutes to setup, just hit <b>Escape</b> and continue getting setting up.</p>
 					</div>
 					<div class="prowl-modal_footer">
 						<div class="float-right">
 							<a href="https://github.com/Aotik/Prowl" class="button green" target="_blank">
-								Read the docs
+								Interested in the source files?
 							</a>
 						</div>
 					</div>
 				</div>
 
 				<div class="prowl-modal" data-prowl-id="download">
-					<div class="row download nogutter">
-						<div class="col xs-12 m-6">
-							<div class="download-type">
-								<h5>Manual download</h5>
-								<p>Download the current version of the source files and use them in your application.</p>
-								<div class="download-link">
-									<a href="https://github.com/Aotik/Prowl" class="button green" target="_blank">Download</a>
+					<div class="prowl-modal_header">
+						<h2>Direct source link (CDN)</h2>
+					</div>
+					<div class="prowl-modal_body">
+						<div class="download-type">
+							<p>Use the CDN link to the latest version of the source files to keep up to date. (Recommended)</p>
+							<div class="download-link">
+								<div class="input">
+									<input type="text" value="https://cdn.darken.io/prowljs/latest/prowl.min.js" readonly="true">
+									<label>JS</label>
+								</div>
+								<div class="input">
+									<input type="text" value="https://cdn.darken.io/prowljs/latest/prowl.css" readonly="true">
+									<label>CSS</label>
+								</div>
+								<div class="input">
+									<input type="text" value="https://cdn.darken.io/prowljs/latest/prowl_theme.css" readonly="true">
+									<label>CSS</label>
 								</div>
 							</div>
 						</div>
-						<div class="col xs-12 m-6">
-							<div class="download-type">
-								<h5>Direct source link</h5>
-								<p>Use the CDN link to the latest version of the source files to keep up to date. (Recommended)</p>
-								<div class="download-link">
-									<div class="input">
-										<input type="text" value="https://cdn.darken.io/prowljs/latest/prowl.js" readonly="true">
-									</div>
-								</div>
-							</div>
+					</div>
+					<div class="prowl-modal_footer">
+						<div class="download-type">
+							<small>Or you can <a href="https://github.com/Aotik/Prowl" target="_blank">download</a> the current version of Prowl and get started this way.</small>
 						</div>
 					</div>
 				</div>
@@ -289,9 +302,15 @@
 		</div>
 
 		<script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-		<script src="prowl.js" charset="utf-8"></script>
+		<script src="//cdn.darken.io/prowljs/latest/prowl.min.js" charset="utf-8"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 		<script type="text/javascript">
+		$.fn.extend({
+			toggleText: function(a, b){
+				return this.text(this.text() == b ? a : b)
+			}
+		})
+
 		let options = {
 			animate: 'drop'
 		}
@@ -345,6 +364,11 @@
 		$(document).ready(() => {
 			activateLink()
 			$('pre code').each((i, block) => hljs.highlightBlock(block))
+		})
+
+		$('.mobile a').bind('click', function(e) {
+			$('.links').slideToggle(200)
+			$(this).find('i').toggleText('close', 'menu')
 		})
 
 		</script>

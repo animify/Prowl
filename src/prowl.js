@@ -19,7 +19,7 @@
 			this._escape = opts.closeOnEscape || true
 			this._state = 'open closed'.includes(opts.state) ? opts.state : 'closed' || 'closed'
 
-			this._toggle.charAt(0) == '.' ? this._toggle : `.${this._toggle}`
+			(this._toggle.charAt(0) == '.') ? this._toggle : `.${this._toggle}`
 
 			this.cssTop = $(this._modal).css('top')
 			this.cssMobileTop = 0

@@ -18,7 +18,7 @@ body
 	cf()
 
 nav
-	padding .8rem 3rem
+	padding 1rem 3rem
 	background-color #fff
 	border-bottom 1px solid border-color
 	fixed top
@@ -29,22 +29,36 @@ nav
 		vertical-align top
 		h3
 			font-size 1rem
-	.links
+	.mobile
 		display inline-block
+		vertical-align top
+		float right
+		height 1px
+		a
+			display none
+			+below('m')
+				display block
+	.links
 		vertical-align top
 		float right
 		a
 			font-size 1rem
+		+above('m')
+			display inline-block !important
+		+below('m')
+			display block
+			float none
+			padding .5rem 0
+			span(1/1)
+			display none
+			li
+				display block !important
+				text-align center
+				padding .7rem 0 !important
+				margin 0 !important
 
 pre
 	tab-size 4
-
-.white-fade
-	span(1/1)
-	height 6rem
-	background linear-gradient(to top, rgba(255,255,255,1), rgba(255,255,255,0))
-	fixed bottom
-	z-index 0
 
 .button
 	padding 0 2rem
@@ -55,7 +69,7 @@ pre
 	border-radius 100px
 
 .content
-	padding-top 2.8rem
+	padding-top 3.2rem
 	width 100%
 	min-height 100%
 	.inner
@@ -92,6 +106,7 @@ pre
 				margin-top .4rem
 		+below('m')
 			position relative
+			display none
 
 .download
 	&-link
@@ -101,8 +116,6 @@ pre
 			display block
 			width 100%
 	&-type
-		text-align center
-		padding 2.8rem 1.6rem
 		h5
 			color primary-color
 			display block
@@ -118,7 +131,22 @@ pre
 				border-radius 100px
 				height 3rem
 				font-weight 600
-				padding 0 1.4rem
+				padding 0 4rem 0 1.4rem
+				position relative
+			label
+				absolute top .9rem right .5rem
+				width 4rem
+				color primary-color
+				text-align center
+				font-size 1.1rem
+				font-weight 900
+				user-select none
+			& + .input
+				margin-top 1rem
+		small
+			line-height 1.6rem
+			a
+				font-size inherit
 	.col
 		& + .col
 			border-left 1px solid border-color
@@ -130,6 +158,18 @@ pre
 			border-left 0
 			border-top 1px solid border-color
 
+section.more
+	border-top 1px solid border-color
+	margin-top 0 !important
+	padding 2.4rem 0 1rem 0
+	small
+		float right
+		margin .2rem 0
+	a
+		position relative
+		i
+			absolute top 1px
+			margin-left .2rem
 .hljs
 	display block
 	overflow-x auto
