@@ -39,6 +39,22 @@
 		initiate(targets) {
 			let checkWidth = () => {
 				($(this._modal).css("position") == "fixed" ) ? this._isMobile = true : this._isMobile = false
+
+				const _visibleModal = $(this._modal).not(":hidden")
+
+				if (_visibleModal.length < 1) return
+
+				if (this._isMobile && _visibleModal[0].style.top != "0px") {
+					_visibleModal.css({
+						top: this.cssMobileTop,
+						left: this.cssMobileLeft
+					})
+				} else if (!this._isMobile && _visibleModal[0].style.top != this.cssTop) {
+					_visibleModal.css({
+						top: this.cssTop,
+						left: this.cssLeft
+					})
+				}
 			}
 
 			this.validColor(this._background) && $(this._overlay).css('background-color', this._background)

@@ -45,6 +45,11 @@ body.locked {
   width: 0;
   display: block;
 }
+@media only screen and (max-width: 1050px) {
+  .prowl-modal {
+    width: 75%;
+  }
+}
 @media only screen and (max-width: 800px) {
   .prowl-modal {
     position: fixed;

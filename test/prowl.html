@@ -48,9 +48,9 @@
 								<h4>Introduction</h4>
 								<h6>A little bit about the plugin</h6>
 								<div class="section-content">
-									<p>Prowl is a jQuery plugin which enables an extensively customisable modal to be implemented on any site.</p>
+									<p>Prowl is a jQuery plugin allowing for easy setup of a fully responsive and extensive modal system.</p>
 
-									<p>Acting as a modal framework and event handler, modal structures do not have a definitive markup structure resulting in a straightforward implementation on any website.</p>
+									<p>Acting as a modal framework and event handler, modal structures do not have a definitive markup structure resulting in a straightforward implementation for any web application.</p>
 									<a class="toggle button" data-prowl-target="what">Try out the basic modal</a>
 								</div>
 							</section>
@@ -58,7 +58,7 @@
 								<h4>Setup</h4>
 								<h6>Installation and setup</h6>
 								<div class="section-content">
-									<p>Download the latest distribution files from the repo.</p>
+									<p><a class="toggle" data-prowl-target="download">Download</a> the latest distribution files from the repo.</p>
 									<p>Include the CSS files in the head of your page (prowl.css is required unless you know what you're doing):</p>
 									<pre>
 										<code class="hljs">&lt;link rel=&quot;stylesheet&quot; href=&quot;/dist/prowl.css&quot;&gt;&#10;&lt;link rel=&quot;stylesheet&quot; href=&quot;/dist/prowl_theme.css&quot;&gt;</code>
@@ -261,19 +261,27 @@
 					</div>
 				</div>
 
-				<div class="prowl-modal" data-prowl-id="what2">
-					<div class="prowl-modal_header">
-						<h2>What is Prowl JS?2</h2>
-					</div>
-					<div class="prowl-modal_body">
-						<p>Well you're looking at it. Prowl is a jQuery plugin which enables an extensively customisable modal to be implemented on any site.</p>
-						<p>It takes a few minutes to setup, here's the link to the <a href="#">CDN</a>.</p>
-					</div>
-					<div class="prowl-modal_footer">
-						<div class="float-right">
-							<a href="https://github.com/Aotik/Prowl" class="button green" target="_blank">
-								Read the docs
-							</a>
+				<div class="prowl-modal" data-prowl-id="download">
+					<div class="row download nogutter">
+						<div class="col xs-12 m-6">
+							<div class="download-type">
+								<h5>Manual download</h5>
+								<p>Download the current version of the source files and use them in your application.</p>
+								<div class="download-link">
+									<a href="https://github.com/Aotik/Prowl" class="button green" target="_blank">Download</a>
+								</div>
+							</div>
+						</div>
+						<div class="col xs-12 m-6">
+							<div class="download-type">
+								<h5>Direct source link</h5>
+								<p>Use the CDN link to the latest version of the source files to keep up to date. (Recommended)</p>
+								<div class="download-link">
+									<div class="input">
+										<input type="text" value="https://cdn.darken.io/prowljs/latest/prowl.js" readonly="true">
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -285,7 +293,7 @@
 		<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 		<script type="text/javascript">
 		let options = {
-			animate: 'reveal'
+			animate: 'drop'
 		}
 
 		let inst = $('.toggle').prowl(options)

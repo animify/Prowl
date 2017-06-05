@@ -3,13 +3,15 @@
 @import 'rupture'
 
 primary-color = #3a52b2
+border-color = lighten(#b0adba, 60%)
 
 body
 	font-size 18px
 	min-height 100%
+	font-family 'Europa', sans-serif
 	a
 		color primary-color
-		font-size 1rem
+		font-size 1.1rem
 		&:hover
 			color darken(primary-color, 20%)
 .container
@@ -18,7 +20,7 @@ body
 nav
 	padding .8rem 3rem
 	background-color #fff
-	border-bottom 1px solid lighten(#b0adba, 60%)
+	border-bottom 1px solid border-color
 	fixed top
 	z-index 100
 	span(1/1)
@@ -74,7 +76,7 @@ pre
 		display inline-block
 		margin 0
 	.section-content
-		border-top lighten(#b0adba, 60%) 1px solid
+		border-top border-color 1px solid
 		padding 1.4rem 0
 		margin-top 1.4rem
 	.list
@@ -91,6 +93,42 @@ pre
 		+below('m')
 			position relative
 
+.download
+	&-link
+		display block
+		margin-top 1rem
+		.button
+			display block
+			width 100%
+	&-type
+		text-align center
+		padding 2.8rem 1.6rem
+		h5
+			color primary-color
+			display block
+			margin-bottom .2rem
+		p
+			color lighten(#4c5767, 20%)
+		.input
+			input
+				width 100%
+				font-size 1rem
+				font-family 'Europa', sans-serif
+				min-width 0
+				border-radius 100px
+				height 3rem
+				font-weight 600
+				padding 0 1.4rem
+	.col
+		& + .col
+			border-left 1px solid border-color
+	+below('m')
+		absolute top 50%
+		transform translateY(-50%)
+		transform-style preserve-3d
+		.col + .col
+			border-left 0
+			border-top 1px solid border-color
 
 .hljs
 	display block

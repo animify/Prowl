@@ -1,10 +1,11 @@
 body {
   font-size: 18px;
   min-height: 100%;
+  font-family: 'Europa', sans-serif;
 }
 body a {
   color: #3a52b2;
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 body a:hover {
   color: #2e428e;
@@ -131,6 +132,59 @@ pre {
 @media only screen and (max-width: 800px) {
   .content .list {
     position: relative;
+  }
+}
+.download-link {
+  display: block;
+  margin-top: 1rem;
+}
+.download-link .button {
+  display: block;
+  width: 100%;
+}
+.download-type {
+  text-align: center;
+  padding: 2.8rem 1.6rem;
+}
+.download-type h5 {
+  color: #3a52b2;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+.download-type p {
+  color: #68778d;
+}
+.download-type .input input {
+  width: 100%;
+  font-size: 1rem;
+  font-family: 'Europa', sans-serif;
+  min-width: 0;
+  border-radius: 100px;
+  height: 3rem;
+  font-weight: 600;
+  padding: 0 1.4rem;
+}
+.download .col + .col {
+  border-left: 1px solid #dfdee3;
+}
+@media only screen and (max-width: 800px) {
+  .download {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+  }
+  .download .col + .col {
+    border-left: 0;
+    border-top: 1px solid #dfdee3;
   }
 }
 .hljs {
